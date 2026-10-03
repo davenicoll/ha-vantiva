@@ -15,7 +15,7 @@ DEFAULT_USERNAME: Final = "admin"
 CONF_SCAN_INTERVAL: Final = "scan_interval"
 CONF_CONSIDER_HOME: Final = "consider_home"
 
-DEFAULT_SCAN_INTERVAL: Final = 30
+DEFAULT_SCAN_INTERVAL: Final = 300
 MIN_SCAN_INTERVAL: Final = 10
 MAX_SCAN_INTERVAL: Final = 3600
 
