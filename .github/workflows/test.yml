@@ -40,4 +40,5 @@ jobs:
         run: mypy custom_components/vantiva
 
       - name: Pytest
+        if: ${{ !cancelled() }}
         run: pytest --cov=custom_components.vantiva --cov-report=term-missing
