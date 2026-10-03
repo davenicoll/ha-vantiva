@@ -60,7 +60,7 @@ class WanStatus:
     lease_obtained: datetime | None; lease_expires: datetime | None   # naive router-local time -> tz-aware UTC not assumed; store as naive
     link_up: bool | None          # diagnostics "WAN Available" == "Link Up"
     gpon_up: bool | None          # diagnostics "GPON Status" == "Up"
-    rx_bytes: int | None; tx_bytes: int | None    # internet-modal "Bytes" first value = received, second = transmitted
+    rx_bytes: int | None; tx_bytes: int | None    # internet-modal "Bytes": value with icon-download = received, icon-upload = transmitted
     rx_packets: int | None; tx_packets: int | None
     rx_errors: int | None; tx_errors: int | None
 
@@ -140,8 +140,8 @@ Behaviour rules:
 
 | Fixture | Expectation |
 |---|---|
-| `system-info-modal.html` | product "NH20T", vendor "Technicolor", hardware "GCNT-K", software "20.3.i.0565.17", uptime 49 d 22 h 3 m 52 s, memory 54, cpu 2, reboot cause "User Initiated", mac "02:00:00:00:00:01" |
-| `internet-modal.html` | connected True, ipv4 "203.0.113.58", gateway "203.0.113.1", dns ("198.51.100.67","198.51.100.116"), rx_bytes 1393232473707, tx_bytes 3939997125741 |
+| `system-info-modal.html` | product "NH20T", vendor "Technicolor", hardware "GCNT-K", software "20.3.i.0565.17", uptime 49 d 22 h 3 m 52 s, memory 54, cpu 2, reboot cause "User Initiated", mac "02:00:00:00:00:26" |
+| `internet-modal.html` | connected True, ipv4 "203.0.113.58", gateway "203.0.113.1", dns ("198.51.100.67","198.51.100.116"), rx_bytes 3939997125741, tx_bytes 1393232473707 (the page shows the transmit value first, marked with an upload icon; values are assigned by icon, not position) |
 | `gpon-overview-modal.html` | bandwidth 10000/10000, wavelength 1270/1577, tx 6.5236239, rx -17.544872, temp 40.597656 |
 | `diagnostics-connection-modal.html` | link_up True, gpon_up True, ipv4 "203.0.113.58", ipv6 None ("No Address Assigned") |
 | `device-modal.html` | 36 ethernet clients, all `ConnectionType.WIRED`, mix of active True/False, first client hostname "device-01" ip "192.168.1.117" mac "02:00:00:00:00:02" port "5" speed 2500 |
