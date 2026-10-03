@@ -88,28 +88,48 @@ wled-GITHUB-WLED       88:xx:xx:xx:xx:18  active=True   wired  port=5  speed=250
 
 **Full output:** See `docs/validation/live-client-test.txt`
 
-### 2. Home Assistant Integration Test
+### 2. Home Assistant Integration Test ✓ PASSED
 
-**Status:** Run by lead (see below)
+**Run by:** lead agent, 2026-10-03, on the host (Docker Desktop), after the live client test.
 
-The Home Assistant Docker end-to-end test is being executed by the team lead in a non-sandboxed environment with the HA image already available locally.
+**Environment**
+- `ghcr.io/home-assistant/home-assistant:stable` (2026.9.x), fresh `/config` with `custom_components/vantiva` copied in (not bind-mounted).
+- Onboarding, config flow, options flow and diagnostics driven through the REST API from the host (`/usr/bin/python3`, credentials read from the untracked `.env` via environment variables, nothing printed).
+- Screenshots taken with Playwright (Chromium, 1440×900) after logging in through the normal login form with a throwaway test user. Public IPs, serial number and MAC addresses were masked in the images before saving.
+- The container, its `/config` directory (which holds the router password in `.storage/core.config_entries`) and all temporary files were deleted afterwards.
 
-**Test Coverage:**
-- [ ] Container startup and onboarding via REST API
-- [ ] Config flow with router credentials
-- [ ] Entity creation (sensors, binary_sensors, device_tracker)
-- [ ] Entity state validation
-- [ ] Diagnostics endpoint (password/MAC redaction)
-- [ ] HA log monitoring (no errors/warnings)
-- [ ] Coordinator polling (3+ cycles)
-- [ ] Options flow (scan interval change)
+**Results**
 
-**Results:** (to be filled by lead)
+| Check | Result |
+|---|---|
+| Container startup, onboarding via REST | ✓ `/api/onboarding/users`, `core_config`, `analytics`, `integration` all 200 |
+| Integration discovered by HA loader | ✓ "We found a custom integration vantiva" (expected warning for custom integrations) |
+| Config flow `user` step | ✓ form with `host`, `username`, `password`; submit → `create_entry`, title **NH20T**, entry state `loaded` |
+| Entities created | ✓ 56: 36 `device_tracker` (27 home / 9 not_home at first poll, 30 / 6 after the router updated its table), 17 `sensor`, 3 `binary_sensor` |
+| Binary sensors | ✓ `binary_sensor.nh20t_internet` = on, `nh20t_wan_link` = on, `nh20t_gpon_link` = on |
+| Sensors | ✓ WAN IPv4 / gateway / DNS present (redacted), connected clients 27→30, known clients 36, CPU 2 %, memory 54 %, firmware `20.3.i.0565-…17`, hardware GCNT-K, last boot 2026-08-14 (stable across polls), GPON Rx −18.3 dBm / Tx 6.5 dBm / 41.0 °C / 12.4 mA / 3.23 V, WAN received 3944.7 GB / sent 1394.6 GB (increasing between polls) |
+| Coordinator polling | ✓ values changed at 18:21:42 and 18:22:44 (30 s interval); entry stayed `loaded` |
+| Diagnostics (`/api/diagnostics/config_entry/<id>`) | ✓ password `**REDACTED**`, 0 unredacted public IPs, 0 unredacted MACs, password string absent from the whole payload |
+| Options flow | ✓ form with `scan_interval`, `consider_home`; set 60 s / 180 s → `create_entry`, entry reloaded and `loaded` |
+| HA log (`docker logs`) | ✓ no WARNING/ERROR from `custom_components.vantiva`; only the standard "not been tested by Home Assistant" notice and an unrelated `rich` SyntaxWarning from HA's own dependencies |
+
+**Screenshots** (`docs/screenshots/`, redacted)
+
+| File | Shows |
+|---|---|
+| `01-integrations.png` | Integrations dashboard with the Vantiva card ("1 device") and bundled brand icon |
+| `02-integration-entry.png` | Vantiva entry page: version 0.1.0, 1 device, 56 entities, hub NH20T |
+| `03-gateway-device.png` | NH20T device page: device info (firmware, hardware), sensors, diagnostics, activity |
+| `04-config-flow.png` | "Connect to a Vantiva gateway" config flow dialog (host, username, password) |
+
+**Notes**
+- `device_tracker` home count moved from 27 to 30 within a minute: the router's own `State` flag flaps for a few clients, which is the source of truth the integration reports. `consider_home` (default 180 s) smooths this in HA.
+- The first attempt to open the config flow dialog via the `/config/integrations/dashboard/add?domain=vantiva` deep link rendered nothing in headless Chromium; clicking "Add hub" on the entry page worked.
 
 ## Findings
 
 ### Issues Found
-None identified in live client testing.
+None identified in the live client test or the Home Assistant end-to-end test.
 
 ### Observations
 1. **Client Data Quality:** All 36 LAN clients discovered successfully
