@@ -12,6 +12,8 @@ Everything stays on your LAN; no cloud service is involved.
 | Vantiva/Technicolor NH20T (Telus fibre hub, hardware GCNT-K) | Homeware 20.3.i | Verified |
 | Other Homeware 20 gateways | Homeware 20.x | Likely to work, untested |
 
+*Verified against NH20T firmware 20.3.i.0565.17 (Home Assistant 2026.9.x)*
+
 Older Homeware 17/18 gateways (DGA, TG789 and similar) use the same login scheme but a different
 page layout. They may partly work; reports are welcome.
 
