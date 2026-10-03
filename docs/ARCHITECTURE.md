@@ -142,7 +142,7 @@ class VantivaData: gateway, wan, gpon, clients: dict[str, LanClient]
   "verify SSL"/scheme is not needed (router is HTTP only on the LAN; `https://` host prefix is
   honoured if given). `test-before-configure`: logs in and fetches system info; unique ID is the
   gateway MAC from system info (`unique-config-entry`). Reauth flow on `VantivaAuthError`.
-  Options flow: scan interval (default 300 s, min 10 s) and `consider_home` seconds for trackers.
+  Options flow: scan interval (default 300 s, 60 s to 86400 s) and `consider_home` seconds for trackers.
 * **Coordinator**: one `DataUpdateCoordinator[VantivaData]`; a single `update` fetches the pages
   above concurrently through one aiohttp session, raises `ConfigEntryAuthFailed` on auth errors
   and `UpdateFailed` on transport errors. Page set is fixed after first successful probe.

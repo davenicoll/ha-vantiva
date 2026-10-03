@@ -96,7 +96,7 @@ After setup, choose **Configure** on the integration entry:
 
 | Option | Default | Description |
 |---|---|---|
-| Polling interval | 300 s (5 min) | How often the gateway is polled. Minimum 10 s. |
+| Polling interval | 300 s (5 min) | How often the gateway is polled. 60 s minimum, 86400 s (once a day) maximum. |
 | Consider home | 180 s | How long a tracker stays `home` after the gateway stops reporting the client as active. |
 
 Changing options reloads the integration.

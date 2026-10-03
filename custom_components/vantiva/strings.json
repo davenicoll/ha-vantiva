@@ -44,7 +44,7 @@
           "consider_home": "Consider home"
         },
         "data_description": {
-          "scan_interval": "Seconds between polls of the gateway (minimum 10).",
+          "scan_interval": "Seconds between polls of the gateway (60 to 86400, default 300).",
           "consider_home": "Seconds a client stays home after the gateway stops reporting it as active."
         }
       }

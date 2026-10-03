@@ -67,7 +67,7 @@ releases from the last six months can install. Local dev uses the Homebrew `pyth
 
 ## ADR-7 amendment (2026-10-03): default poll interval is 5 minutes
 
-Dave asked for a 5-minute default. `DEFAULT_SCAN_INTERVAL` is now 300 s (minimum still 10 s,
+Dave asked for a 5-minute default. `DEFAULT_SCAN_INTERVAL` is now 300 s (range 60 s to 86400 s, i.e. at most once a minute and at least once a day,
 configurable in options). Rationale beyond the request: the router allows a single web session,
 so less frequent polling also means fewer forced logouts of anyone using the gateway's own GUI.
 `consider_home` stays at 180 s; with a 300 s poll a client that disappears is reported away at the

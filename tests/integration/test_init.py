@@ -12,7 +12,7 @@ from custom_components.vantiva.api import (
     VantivaLockedOutError,
     VantivaParseError,
 )
-from custom_components.vantiva.const import DOMAIN
+from custom_components.vantiva.const import DEFAULT_SCAN_INTERVAL, DOMAIN
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.config_entries import SOURCE_REAUTH, ConfigEntryState
 from homeassistant.const import STATE_UNAVAILABLE
@@ -72,7 +72,7 @@ async def test_runtime_auth_failure_starts_reauth(
     freezer: FrozenDateTimeFactory,
 ) -> None:
     mock_client.async_get_data.side_effect = VantivaAuthError("password changed")
-    freezer.tick(timedelta(seconds=31))
+    freezer.tick(timedelta(seconds=DEFAULT_SCAN_INTERVAL + 1))
     async_fire_time_changed(hass)
     await hass.async_block_till_done()
 
@@ -90,14 +90,14 @@ async def test_runtime_connection_error_then_recovery(
 ) -> None:
     entity_id = "sensor.nh20t_wan_ipv4_address"
     mock_client.async_get_data.side_effect = VantivaConnectionError("timeout")
-    freezer.tick(timedelta(seconds=31))
+    freezer.tick(timedelta(seconds=DEFAULT_SCAN_INTERVAL + 1))
     async_fire_time_changed(hass)
     await hass.async_block_till_done()
     assert hass.states.get(entity_id).state == STATE_UNAVAILABLE
 
     mock_client.async_get_data.side_effect = None
     mock_client.async_get_data.return_value = make_data()
-    freezer.tick(timedelta(seconds=31))
+    freezer.tick(timedelta(seconds=DEFAULT_SCAN_INTERVAL + 1))
     async_fire_time_changed(hass)
     await hass.async_block_till_done()
     assert hass.states.get(entity_id).state == "203.0.113.58"
