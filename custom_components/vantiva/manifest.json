@@ -1,0 +1,13 @@
+{
+  "domain": "vantiva",
+  "name": "Vantiva",
+  "codeowners": ["@davenicoll"],
+  "config_flow": true,
+  "documentation": "https://github.com/davenicoll/ha-vantiva",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/davenicoll/ha-vantiva/issues",
+  "loggers": ["custom_components.vantiva"],
+  "requirements": [],
+  "version": "0.1.0"
+}

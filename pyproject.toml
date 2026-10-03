@@ -23,6 +23,7 @@ dev = [
 target-version = "py314"
 line-length = 100
 src = ["custom_components", "tests", "scripts"]
+extend-exclude = ["docs"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF", "ASYNC", "D"]
