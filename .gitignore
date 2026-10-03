@@ -26,3 +26,6 @@ docs/captures/raw/
 .DS_Store
 .idea/
 .vscode/
+
+# local agent worktrees / claude state
+.claude/
