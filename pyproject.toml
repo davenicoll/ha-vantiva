@@ -1,0 +1,49 @@
+[project]
+name = "ha-vantiva"
+version = "0.1.0"
+description = "Home Assistant custom integration for Vantiva (Technicolor) Homeware gateways"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.14"
+dependencies = ["aiohttp>=3.10"]
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.24",
+  "pytest-cov",
+  "aioresponses>=0.7.7",
+  "ruff>=0.8",
+  "mypy>=1.13",
+]
+# Home Assistant integration tests. The pin is set in requirements_test.txt
+# (one pytest-homeassistant-custom-component release == one HA release).
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+src = ["custom_components", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF", "ASYNC", "D"]
+ignore = ["D203", "D212", "D105", "D107", "RUF012"]
+per-file-ignores = { "tests/**" = ["D"], "scripts/**" = ["D"] }
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+warn_unreachable = true
+files = ["custom_components/vantiva/vantiva_client"]
+
+[[tool.mypy.overrides]]
+module = ["custom_components.vantiva.*"]
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-q"
