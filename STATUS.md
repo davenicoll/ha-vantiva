@@ -1,21 +1,20 @@
 # STATUS
 
-PHASE: 3 - Build (in progress)
+PHASE: 4 - Validation (in progress)
 
 ## Done
-- Phase 1 research complete and committed: router identified (Vantiva/Technicolor NH20T, Telus GPON hub, Homeware 20.3.i, no Wi-Fi); SRP-6a login reverse-engineered and reproduced; all data pages captured; scrubbed fixtures in `tests/fixtures/nh20t/`.
-- Root cause of the upstream `shaiu/technicolor` failure established by live reproduction (docs/RESEARCH.md §4): its SRP login works, but the published `pytechnicolor` package needs `lxml` without declaring it (crash -> "Error setting up entry"), its `device-modal.lp` selectors do not match Homeware 20, presence is inferred from "has IP" (wrong here), and the config flow never validates credentials.
-- ADR-1: new `vantiva` integration (not a fork). ADR-2..8 in docs/DECISIONS.md.
-- docs/ARCHITECTURE.md, docs/PUBLISHING.md (HACS, hassfest, brands, quality scale; Python 3.14 verified), docs/CLIENT_API.md (contract between client and integration).
-- Private GitHub repo created: github.com/davenicoll/ha-vantiva, main pushed.
+- Phase 1 research (docs/RESEARCH.md): NH20T identified, SRP-6a reproduced, upstream root cause found by live reproduction (undeclared lxml dependency, Homeware 17/18 selectors, presence from IP, no credential validation).
+- Phase 2 architecture (docs/ARCHITECTURE.md, docs/CLIENT_API.md), ADR-1..8 (docs/DECISIONS.md), HACS publishing guide (docs/PUBLISHING.md).
+- Phase 3 build merged to main: PR #2 client library (SRP, parsers, models; 143 tests, 99% coverage; live probe OK via Docker) and PR #1 integration (config flow + reauth + options, coordinator, device_tracker, sensor, binary_sensor, diagnostics, strings, icons, quality_scale.yaml, hacs.json, brand/, workflows, README; 28 tests). Combined suite: 171 passed, ruff + mypy clean on Python 3.14.
+- Secrets guard: scripts/check_secrets.py + pre-commit hook + CI workflow; history audited, clean.
+- GitHub repo description/topics set.
 
 ## In progress
-- `feature/client` (opus dev agent): async SRP client + parsers + aioresponses tests + live probe via Docker.
-- `feature/integration` (opus dev agent): config flow, coordinator, device_tracker/sensor/binary_sensor, diagnostics, HACS metadata, workflows, README, pytest-homeassistant-custom-component tests.
+- Validator A (sonnet): independent code review + test/lint run + CI (hassfest, HACS action) triage; fixes via PR.
+- Validator B (sonnet): live validation against the router (read-only) and Home Assistant in Docker end-to-end config flow; screenshots to docs/screenshots.
 
 ## Blockers
-- None. Environment notes: host Python builds (uv/pyenv/Homebrew) cannot reach the LAN (macOS local-network privacy); live tests run in Docker (`python:3.14-slim` can reach the router).
+- HACS default-repo submission needs the repo to be public; HACS custom-repository install works while private only for the owner. Dave's call (see README). Not blocking v0.1.0.
 
 ## Next
-- Review + merge both PRs, run the combined test suite, hassfest/HACS validation.
-- Phase 4: sonnet/fable validators; live client test; HA in Docker end-to-end; tag v0.1.0 + release.
+- Fix validator findings, tag v0.1.0, publish GitHub release with vantiva.zip, final STATUS.
