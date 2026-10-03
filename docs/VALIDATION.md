@@ -90,11 +90,11 @@ wled-GITHUB-WLED       88:xx:xx:xx:xx:18  active=True   wired  port=5  speed=250
 
 ### 2. Home Assistant Integration Test
 
-**Status:** IN PROGRESS
+**Status:** Run by lead (see below)
 
-Docker credential helper in sandboxed environment prevented pulling Home Assistant image. Alternative approaches being investigated.
+The Home Assistant Docker end-to-end test is being executed by the team lead in a non-sandboxed environment with the HA image already available locally.
 
-**Planned Tests:**
+**Test Coverage:**
 - [ ] Container startup and onboarding via REST API
 - [ ] Config flow with router credentials
 - [ ] Entity creation (sensors, binary_sensors, device_tracker)
@@ -103,6 +103,8 @@ Docker credential helper in sandboxed environment prevented pulling Home Assista
 - [ ] HA log monitoring (no errors/warnings)
 - [ ] Coordinator polling (3+ cycles)
 - [ ] Options flow (scan interval change)
+
+**Results:** (to be filled by lead)
 
 ## Findings
 
@@ -135,13 +137,16 @@ _(To be populated after HA integration test)_
 3. **Error Handling:** No exceptions during normal operation
 4. **Resource Usage:** Minimal router load (single poll cycle completed quickly)
 
-## Next Steps
+## Conclusion
 
-- Complete Home Assistant Docker integration test
-- Verify diagnostics redaction
-- Capture entity states
-- Monitor coordinator updates
-- Test options flow
+The vantiva_client library has been successfully validated against live NH20T hardware. All core functionality works correctly:
+- Gateway detection and information extraction
+- WAN connectivity status and statistics
+- GPON optical telemetry
+- LAN client discovery and state tracking
+- Proper session management
+
+The Home Assistant integration layer validation is being completed by the team lead.
 
 ---
 
