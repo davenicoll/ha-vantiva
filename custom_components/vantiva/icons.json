@@ -1,0 +1,35 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "internet_connected": {
+        "default": "mdi:web",
+        "state": { "off": "mdi:web-off" }
+      },
+      "wan_link": {
+        "default": "mdi:wan",
+        "state": { "off": "mdi:lan-disconnect" }
+      },
+      "gpon_link": {
+        "default": "mdi:wan",
+        "state": { "off": "mdi:lan-disconnect" }
+      }
+    },
+    "sensor": {
+      "wan_ipv4": { "default": "mdi:ip-network" },
+      "last_boot": { "default": "mdi:restart" },
+      "firmware_version": { "default": "mdi:package-variant" },
+      "hardware_version": { "default": "mdi:chip" },
+      "connected_clients": { "default": "mdi:devices" },
+      "total_clients": { "default": "mdi:format-list-bulleted" },
+      "cpu_pct": { "default": "mdi:cpu-64-bit" },
+      "memory_pct": { "default": "mdi:memory" },
+      "wan_rx_bytes": { "default": "mdi:download-network" },
+      "wan_tx_bytes": { "default": "mdi:upload-network" },
+      "dns_servers": { "default": "mdi:dns" },
+      "wan_gateway": { "default": "mdi:router-network" },
+      "gpon_rx_power": { "default": "mdi:arrow-collapse-down" },
+      "gpon_tx_power": { "default": "mdi:arrow-expand-up" },
+      "gpon_bias": { "default": "mdi:current-dc" }
+    }
+  }
+}

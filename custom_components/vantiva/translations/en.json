@@ -1,0 +1,130 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to a Vantiva gateway",
+        "description": "Enter the address and web interface credentials of the gateway.",
+        "data": {
+          "host": "Host",
+          "username": "Username",
+          "password": "Password"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the gateway, for example 192.168.1.254. A scheme (http:// or https://) and port are accepted.",
+          "username": "Web interface user name, usually admin.",
+          "password": "Web interface password, often printed on the gateway label."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate with the gateway",
+        "description": "The gateway at {host} rejected the stored password. Enter the current web interface password.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication",
+      "locked_out": "The gateway has temporarily locked the account after failed logins. Wait {wait} seconds and try again.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "Device is already configured",
+      "reauth_successful": "Re-authentication was successful",
+      "wrong_device": "The address now points to a different gateway. Remove this entry and add the new gateway instead."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Vantiva options",
+        "data": {
+          "scan_interval": "Polling interval",
+          "consider_home": "Consider home"
+        },
+        "data_description": {
+          "scan_interval": "Seconds between polls of the gateway (minimum 10).",
+          "consider_home": "Seconds a client stays home after the gateway stops reporting it as active."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "internet_connected": {
+        "name": "Internet"
+      },
+      "wan_link": {
+        "name": "WAN link"
+      },
+      "gpon_link": {
+        "name": "GPON link"
+      }
+    },
+    "sensor": {
+      "wan_ipv4": {
+        "name": "WAN IPv4 address"
+      },
+      "last_boot": {
+        "name": "Last boot"
+      },
+      "firmware_version": {
+        "name": "Firmware version"
+      },
+      "hardware_version": {
+        "name": "Hardware version"
+      },
+      "connected_clients": {
+        "name": "Connected clients"
+      },
+      "total_clients": {
+        "name": "Known clients"
+      },
+      "cpu_pct": {
+        "name": "CPU usage"
+      },
+      "memory_pct": {
+        "name": "Memory usage"
+      },
+      "wan_rx_bytes": {
+        "name": "WAN received"
+      },
+      "wan_tx_bytes": {
+        "name": "WAN sent"
+      },
+      "dns_servers": {
+        "name": "DNS servers"
+      },
+      "wan_gateway": {
+        "name": "WAN gateway"
+      },
+      "gpon_rx_power": {
+        "name": "GPON receive power"
+      },
+      "gpon_tx_power": {
+        "name": "GPON transmit power"
+      },
+      "gpon_temperature": {
+        "name": "GPON transceiver temperature"
+      },
+      "gpon_bias": {
+        "name": "GPON laser bias current"
+      },
+      "gpon_vcc": {
+        "name": "GPON transceiver supply voltage"
+      }
+    }
+  },
+  "exceptions": {
+    "invalid_auth": {
+      "message": "The gateway rejected the stored credentials."
+    },
+    "locked_out": {
+      "message": "The gateway account is temporarily locked (wait {wait} seconds)."
+    },
+    "update_failed": {
+      "message": "Error communicating with the gateway: {error}"
+    }
+  }
+}
