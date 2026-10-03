@@ -166,6 +166,21 @@ uv pip install ruff mypy pytest-cov aioresponses
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the design.
 
+### Secrets hygiene (local, before anything is committed)
+
+Router credentials belong only in the untracked `.env` (see `.env.example`). Two git hooks in
+`.githooks/` stop secrets before they reach a commit, which is the only point where a check is
+useful; a CI scan would run after the secret is already in the history. Enable them once per clone:
+
+```sh
+git config core.hooksPath .githooks
+brew install gitleaks   # or your package manager
+```
+
+- `pre-commit`: `scripts/check_secrets.py --staged` (router-specific patterns, non-synthetic MACs in
+  fixtures, any password value from your local `.env`) plus `gitleaks git --pre-commit --staged`.
+- `pre-push`: the same check over the whole tree plus `gitleaks git` over the full history.
+
 ## License
 
 MIT

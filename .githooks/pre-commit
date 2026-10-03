@@ -1,2 +1,11 @@
 #!/usr/bin/env bash
-exec python3 "$(git rev-parse --show-toplevel)/scripts/check_secrets.py" --staged
+# Local secrets gate: runs before every commit. Enable once with:
+#   git config core.hooksPath .githooks
+set -euo pipefail
+root="$(git rev-parse --show-toplevel)"
+python3 "$root/scripts/check_secrets.py" --staged
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks git --pre-commit --staged --redact --no-banner "$root"
+else
+  echo "pre-commit: gitleaks not installed (brew install gitleaks); only the repo-specific check ran" >&2
+fi

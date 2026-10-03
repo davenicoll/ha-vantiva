@@ -140,7 +140,7 @@ None identified in the live client test or the Home Assistant end-to-end test.
 
 ## Security Validation
 
-✓ **gitleaks 8.30** (`gitleaks git`) over the full history: 30 commits, no leaks found (2026-10-03). The working-tree scan flags only the untracked, gitignored `.env`, as intended. gitleaks also runs in CI on every push and pull request.
+✓ **gitleaks 8.30** (`gitleaks git`) over the full history: 30 commits, no leaks found (2026-10-03). The working-tree scan flags only the untracked, gitignored `.env`, as intended. gitleaks runs locally in the `pre-commit` (staged) and `pre-push` (full history) hooks; there is deliberately no CI secrets scan, because by then a secret would already be in the repository.
 
 ✓ **Credentials:** Never printed, logged, or exposed  
 ✓ **Router Access:** Read-only operations only  
