@@ -1,5 +1,7 @@
 # Vantiva gateway for Home Assistant
 
+![Home Assistant device page for a Vantiva NH20T gateway showing connectivity, GPON optics, client counts and WAN traffic sensors](docs/screenshots/03-gateway-device.png)
+
 A Home Assistant custom integration for Vantiva (formerly Technicolor) gateways that run the
 Homeware web interface. It logs in to the gateway's local web GUI, polls a handful of status
 pages and exposes LAN client presence, WAN status, GPON optics and system health as entities.
@@ -12,7 +14,7 @@ Everything stays on your LAN; no cloud service is involved.
 | Vantiva/Technicolor NH20T (Telus fibre hub, hardware GCNT-K) | Homeware 20.3.i | Verified |
 | Other Homeware 20 gateways | Homeware 20.x | Likely to work, untested |
 
-*Verified against NH20T firmware 20.3.i.0565.17 (Home Assistant 2026.9.x)*
+*Verified against NH20T firmware 20.3.i.0565.17 (Home Assistant 2026.9.x). More screenshots and the full test log are in [docs/VALIDATION.md](docs/VALIDATION.md).*
 
 Older Homeware 17/18 gateways (DGA, TG789 and similar) use the same login scheme but a different
 page layout. They may partly work; reports are welcome.
