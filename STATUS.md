@@ -12,7 +12,8 @@ Repo: https://github.com/davenicoll/ha-vantiva (private). Release: https://githu
 - Phase 4 validation (PR #3 review → #4, PR #5 live): independent Sonnet review (3 minor fixes); live client test against the router passed; Home Assistant 2026.9 in Docker end-to-end passed (config flow → NH20T entry, 56 entities, diagnostics redacted, 3+ polls, options flow, clean log); redacted screenshots in docs/screenshots/ and report in docs/VALIDATION.md.
 - Captain request: representative screenshot at the top of README.md (PR #6).
 - Secrets: `.env` untracked; history audited; `scripts/check_secrets.py` runs as pre-commit hook and in CI (push + PR).
-- v0.1.0 tagged and released; Release workflow attached `vantiva.zip`. HACS custom-repository install steps in README.
+- v0.1.0 released; v0.1.1 released (PR #7): default poll interval 5 min, allowed range 60 s to 86400 s per Dave; gitleaks added to CI.
+- Dave's pre-publication request: full-history gitleaks scan run locally (gitleaks 8.30, 30 commits, no leaks; only the untracked `.env` is flagged in a working-tree scan). Safe to make public from a secrets standpoint.
 
 ## CI on main
 - Test (ruff, mypy, pytest), Secrets check, hassfest: pass.
