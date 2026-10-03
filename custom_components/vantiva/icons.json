@@ -29,7 +29,9 @@
       "wan_gateway": { "default": "mdi:router-network" },
       "gpon_rx_power": { "default": "mdi:arrow-collapse-down" },
       "gpon_tx_power": { "default": "mdi:arrow-expand-up" },
-      "gpon_bias": { "default": "mdi:current-dc" }
+      "gpon_temperature": { "default": "mdi:thermometer" },
+      "gpon_bias": { "default": "mdi:current-dc" },
+      "gpon_vcc": { "default": "mdi:flash" }
     }
   }
 }

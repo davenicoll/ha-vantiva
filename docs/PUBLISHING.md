@@ -29,9 +29,9 @@ ha-vantiva/
 │       ├── strings.json
 │       └── translations/
 │           └── en.json
-├── brand/                     # Local brand assets (HA 2026.3.0+)
-│   ├── icon.png              # 256x256
-│   └── logo.png              # (Optional)
+│       ├── brand/             # Local brand assets, INSIDE the integration dir (HA 2026.3.0+)
+│       │   ├── icon.png       # 256x256
+│       │   └── logo.png       # (Optional)
 ├── README.md                  # REQUIRED
 └── hacs.json                  # REQUIRED
 ```
@@ -258,7 +258,7 @@ To get the Vantiva integration included in the HACS default repository list, fol
    - Description set
    - Topics/tags added (e.g., `home-assistant`, `hacs`, `integration`)
    - Issues enabled
-6. **Brand assets**: Either a `brand/` directory with `icon.png`, or the domain present in `home-assistant/brands`.
+6. **Brand assets**: Either `custom_components/<domain>/brand/icon.png`, or the domain present in `home-assistant/brands`. (The HACS action checks `<integration path>/brand/icon.png`; a repo-root `brand/` is ignored.)
 
 ### Submission Process
 
@@ -347,12 +347,12 @@ When clicked, this:
 
 ### 7.1 Local Brand Assets (Recommended)
 
-**As of Home Assistant 2026.3.0**, custom integrations can bundle brand icons directly in a `brand/` directory at the repository root.
+**As of Home Assistant 2026.3.0**, custom integrations can bundle brand icons in a `brand/` directory **inside the integration directory** (`custom_components/vantiva/brand/`), per https://developers.home-assistant.io/docs/creating_integration_file_structure.
 
 **Directory structure:**
 ```
 ha-vantiva/
-└── brand/
+└── custom_components/vantiva/brand/
     ├── icon.png       # 256x256 px, 1:1 aspect ratio
     ├── icon@2x.png    # 512x512 px (optional, hDPI)
     ├── logo.png       # Landscape, shortest side 128-256 px (optional)
@@ -608,8 +608,8 @@ Before submitting to HACS default or making your first release:
 
 ### HACS Files
 - [ ] `hacs.json` at repository root
-- [ ] Brand assets: `brand/icon.png` (256x256)
-- [ ] Optional: `brand/logo.png`
+- [ ] Brand assets: `custom_components/vantiva/brand/icon.png` (256x256)
+- [ ] Optional: `custom_components/vantiva/brand/logo.png`
 
 ### GitHub Actions
 - [ ] `.github/workflows/validate.yml` (hassfest + HACS validation)
@@ -681,3 +681,8 @@ Before submitting to HACS default or making your first release:
 **Document prepared:** 2026-10-03  
 **For:** Vantiva integration (`github.com/davenicoll/ha-vantiva`)  
 **Domain:** `vantiva`
+
+
+## Note: HACS action on a private repository
+
+The HACS action reads `hacs.json` and `manifest.json` through `raw.githubusercontent.com`, which returns 404 for private repositories. On this private repo the action therefore reports "invalid hacs.json" and "manifest ... Got None" even though both files are valid (hassfest passes). These two checks will pass once the repository is public; the brand check is independent and passes with the bundled `brand/` directory.

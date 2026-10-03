@@ -1,0 +1,53 @@
+# Live Client Test Results
+# Date: 2026-10-03
+# Test: Standalone vantiva_client library against NH20T gateway
+# Environment: Docker (python:3.14-slim + aiohttp + homeassistant)
+
+== Gateway ==
+vendor/product   : Technicolor NH20T (hw GCNT-K)
+software         : 20.3.i.0565.17
+firmware         : 20.3.i.0565-4629006-20260217054338.17
+serial / mac     : present / present
+uptime           : 49 days, 22:58:31
+memory / cpu     : 54 % / 2 %
+reboot cause     : User Initiated
+
+== WAN ==
+connected        : True
+link up / gpon up: True / True
+ipv4 / ipv6 / gw : present / missing / present
+dns servers      : 2
+lease obtained   : present, expires present
+rx / tx bytes    : 3941879037324 / 1393589531541
+rx / tx packets  : 3131391015 / 1476134253
+rx / tx errors   : 0 / 0
+
+== GPON ==
+bandwidth up/down: 10000/10000 Mbps
+wavelength up/dn : 1270/1577 nm
+transceiver      : DIPLEXER
+tx / rx power    : 6.5328975 / -18.096684 dBm
+bias / vcc / temp: 12.396 mA / 3.2212 V / 40.597656 C
+
+== Clients ==
+device-modal     : 36 clients, 30 active
+connection types : {'wired': 36}
+with ip / ipv6   : 36 / 0
+ipv6devices table: 37 rows, 30 active
+json-only / table-only / state mismatch: 0 / 1 / 0
+
+Sample clients (MACs redacted):
+  Pixel-6                  26:xx:xx:xx:xx:b2 active=True wired port=5 speed=2500
+  wled-GITHUB-WLED         88:xx:xx:xx:xx:18 active=True wired port=5 speed=2500
+  32TCLRokuTV              00:xx:xx:xx:xx:af active=False wired port=5 speed=2500
+
+logged out       : True
+
+VALIDATION CHECKS: ✓ ALL PASSED
+- Gateway product is NH20T: ✓
+- WAN connected: ✓
+- WAN link up: ✓
+- GPON stats present: ✓
+- Clients found (36 total, 30 active): ✓
+- Active/inactive client mix: ✓
+- Logout succeeded: ✓
