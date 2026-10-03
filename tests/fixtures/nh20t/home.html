@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE HTML>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="CSRFtoken" content="0000000000000000000000000000000000000000000000000000000000000000">
+    <meta name="Advanced" content="">
+    <link href="/css/gw.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <!--[if IE 7]><link rel="stylesheet" href="/css/font-awesome-ie7.css"><![endif]-->
+    <script src="/js/main-min.js"></script>
+    <script src="/js/chart-min.js"></script>
+    <script src="/js/jquery-eval-patch.js"></script>
+    <!--[if lt IE 9]> <script src="/js/media-min.js"></script> <![endif]-->
+
+    
+      <style>
+             @media screen and (max-width: 1200px) and (min-width: 1000px){
+               .smallcard .content {font-size: 97%;}
+               .smallcard .subinfos {font-size: 93%;}
+               .smallcard .simple-desc {inline-size: auto;}
+             }
+             @media screen and (max-width: 990px) and (min-width: 767px){
+               .smallcard .content {font-size: 77%;}
+               .smallcard .ethspeedsVal {font-size: 90%;}
+               .smallcard .header #Bridge_ETH_port_4_tab {font-size: 80%;}
+               .smallcard .subinfos {font-size: 100%;}
+               .smallcard .simple-desc {inline-size: auto;}
+             }
+             @media screen and (max-width: 765px) and (min-width: 260px){
+               .smallcard .ethspeedsVal {line-height: 15px;}
+             }
+      </style>
+    
+    
+    	<title>Gateway</title>
+    
+  </head>
+
+<body>
+    
+    
+   <!-- Schedule Reboot message-->
+    
+  <div class="feedback">
+
+  </div>
+    <div class="container">
+    <div class="row">
+      <div class="header span12" id="logo_mobiletab">
+        
+          <a href = "http:&#47;&#47;www.technicolor.com" target = "_blank"><img src = "/img/logo.gif" style="max-height:67.5px"  ></a>
+        
+        <div class="pull-right" style="padding-right:10px">          <div class="btn-group" id="logged">
+                    <button class="btn"> admin </button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">  <li><a tabindex="-1" href="/password.lp" id="changepass"> Change my password </a></li><li class="divider"></li>  <li><a tabindex="-1" href="/" id="signout"> Sign out</a></li></ul></div></div><div class="pull-right" style="padding-right:10px" ><select id="webui_language" class="span3" name="webui_language"><option value="fr-ca" >FranÃ§ais</option><option value="en-us" selected="selected">English (US)</option></select></div>
+      </div>
+    </div>
+    <div class="row">
+      
+
+
+<div class="span3">
+  <div class="smallcard">
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;system-info-modal.lp" data-id="system-info-modal"><p id=System_Info_tab>System Info</p></div><div id="System Info" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;system-info-modal.lp" data-id="system-info-modal"><i class="icon-cogs" ></i></div></div>
+    <div class="content">
+      <p><strong id = "cardSystemVersion">Version Egyptian Blue (20.3.i)</strong></p>
+      <div data-remote="modals/system-info-modal.lp" data-id="system-info-modal">
+        <img class="someInfos" href="#" rel="tooltip" data-placement="top" data-original-title="your gateway" src="/img/gateway.png?20.3.i.0565-4629006-20260217054338-7f39f02c802aba41c0af88cebdfabc33b2d53356" alt="gateway">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="span3">
+  <div class="smallcard">
+    <div class="header" >
+      <div class="header-title pull-left" data-toggle="modal" data-remote="modals/gpon-cfg-modal.lp" data-id="gpon-cfg-modal"><p id="Broadband_tab">Broadband</p></div>
+      <div id="Broadband" class="settings" data-toggle="modal" data-remote="modals/gpon-cfg-modal.lp" data-id="gpon-cfg-modal"><i class="icon-cogs"></i></div>
+      <div id="Broadband_info" class="settings" data-toggle="modal" data-remote="modals/gpon-overview-modal.lp" data-id="gpon-overview-modal"><i class="icon-info-sign"></i></div>
+    </div>
+    <div class="content">
+    <span class="simple-desc"><div class="light green"></div>Connected</span><p><b>Bandwidth</b>10000/10000</p><p><b>Wavelength</b>1270/1577</p>
+    </div>
+  </div>
+</div>
+
+
+  <div class="span3">
+    <div class="smallcard">
+
+  
+
+
+  <div class="header"><div data-toggle="modal" class="header-title pull-left tooLongTitle" data-remote="&#47;modals&#47;internet-modal.lp" data-id="internet-modal"><p id=Internet_Access_tab>Internet Access</p></div><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="uci_wan_auto" id="uci_wan_auto"></div><div id="Internet Access" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;internet-modal.lp" data-id="internet-modal"><i class="icon-cogs" ></i></div></div>
+  
+  <div class="content">
+  
+  <span id="Internet_DHCP_Status" class="simple-desc"><div id="Internet_DHCP_LED" class="light green"></div>DHCP on</span>
+    <p class="subinfos">
+       WAN IP is <strong id ="wan_ip">203.0.113.58</strong><span class="simple-desc"><div class="light off"></div>IPv6 Disabled</span>
+  </p>
+</div>
+
+
+    </div>
+  </div>
+
+
+<div class = "span3">
+  <div class = "smallcard">
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;ethernet-modal.lp" data-id="ethernet-modal"><p id=Local_Network_tab>Local Network</p></div><div id="Local Network" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;ethernet-modal.lp" data-id="ethernet-modal"><i class="icon-cogs" ></i></div></div>
+    
+      <div class = "content">
+    <span id="LAN_DHCP_Status" class="simple-desc"><div id="LAN_DHCP_LEDStatus" class="light green"></div>DHCP enabled</span><p class="subinfos lan-card">Gateway IP is <strong id="Gateway_Ip">192.168.1.254</strong> and netmask is <strong id="Netmask_Ip">255.255.255.0</strong></p><span class="simple-desc"><div class="light orange"></div>IPv6 Not Assigned</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="span3">
+  <div class="smallcard">
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;device-modal.lp" data-id="device-modal"><p id=Devices_tab>Devices</p></div><div id="Devices" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;device-modal.lp" data-id="device-modal"><i class="icon-cogs" ></i></div></div>
+    
+      <div class = "content">
+    <p class="subinfos"><strong id = "Ethernet_Devices" class="modal-link" data-toggle="modal" data-remote="modals/device-modal.lp" data-id="device-modal">29 Devices</strong> connected</p>
+    </div>
+  </div>
+</div>
+
+<div class="span3">
+  <div class="smallcard">
+
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;wanservices-modal.lp" data-id="wanservices-modal"><p id=WAN_Services_tab>WAN Services</p></div><div id="WAN Services" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;wanservices-modal.lp" data-id="wanservices-modal"><i class="icon-cogs" ></i></div></div>
+    
+      <div class="content">
+      
+          <span id="DMZ_Status" class="simple-desc span4"><div id="DMZ_Status_Led" class="light off"></div>DMZ IPv4 disabled</span>
+          
+            <span id="DMZ_Status" class="simple-desc span4"><div id="DMZ_Status_Led" class="light off"></div>DMZ IPv6 disabled</span>
+          
+      
+      <span id="DynDNS_Status" class="simple-desc span4"><div id="DynDNS_Status_Led" class="light off"></div>DynDNS IPv4 disabled</span>
+      <span id="DynDNS_Status" class="simple-desc span4"><div id="DynDNS_Status_Led" class="light off"></div>DynDNS IPv6 disabled</span>
+      </div>
+    
+  </div>
+</div>
+
+<div class = "span3">
+  <div class = "smallcard">
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;firewall-modal.lp" data-id="firewall-modal"><p id=Firewall_tab>Firewall</p></div><div id="Firewall" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;firewall-modal.lp" data-id="firewall-modal"><i class="icon-cogs" ></i></div></div>
+      
+        <div class = "content">
+      
+      <p class = "subinfos">
+        Firewall level: <strong id="Firewall_Level_ID">low</strong><br>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class = "span3">
+  <div class = "smallcard">
+
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="modals&#47;diagnostics-connection-modal.lp" data-id="diagnostics-connection-modal"><p id=Diagnostics_tab>Diagnostics</p></div><div id="Diagnostics" data-toggle="modal" class="settings" data-remote="modals&#47;diagnostics-connection-modal.lp" data-id="diagnostics-connection-modal"><i class="icon-cogs" ></i></div></div>
+      
+        <div class = "content">
+        <table align = "center" cellspacing = "10%" cellpadding = "10%" >
+	  
+            <td><div data-toggle = "modal" data-remote = "modals/diagnostics-ping-modal.lp" data-id = "diagnostics-ping-modal"><img href = "#" rel = "tooltip" data-original-title = "PING" src = "/img/pocket-32-black.png" alt = "ping/trace"></div></td></tr>
+            <tr>
+            
+              <td><div data-toggle = "modal" data-remote = "modals/diagnostics-connection-modal.lp" data-id = "diagnostics-connection-modal"><img href = "#" rel = "tooltip" data-original-title = "CONNECTION" src = "/img/connection-established.png" alt = "connection"></div></td>
+            
+            <td><div data-toggle = "modal" data-remote = "modals/diagnostics-network-modal.lp" data-id = "diagnostics-network-modal"><img href = "#" rel = "tooltip" data-original-title = "NETWORK" src = "/img/network_sans-32.png" alt = "network"></div></td></tr>
+        </table>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+
+var params = [ { name: 'action', value: "overview" }, tch.elementCSRFtoken() ];
+var data_usage = nil;
+
+function updatelink(){
+  $.post("/ajax/datausage.lua",params, function(datausage) {
+    $("#downloadlink").text(get_bitrate(datausage.split(",")[0]));
+    $("#uploadlink").text(get_bitrate(datausage.split(",")[1]));
+  });
+}
+
+if (data_usage){
+  var stopUpdateLink = setInterval(updatelink, 3000);
+}
+</script>
+
+
+
+<div class = "span3">
+  <div class = "smallcard">
+    <div class="header"><div data-toggle="modal" class="header-title pull-left" data-remote="&#47;modals&#47;contentsharing-modal.lp" data-id="contentsharing-modal"><p id=Sharing_tab>Sharing</p></div><div id="Sharing" data-toggle="modal" class="settings" data-remote="&#47;modals&#47;contentsharing-modal.lp" data-id="contentsharing-modal"><i class="icon-cogs" ></i></div></div>
+      
+        <div class = "content sharing-card">
+      
+      <span id="Samba_Filesharing_Enabled" class="simple-desc"><div id="Samba_Filesharing_Enabled_Led" class="light off"></div>Samba Filesharing disabled</span><span id="Dlna_Enabled" class="simple-desc"><div id="Dlna_Enabled_Led" class="light green"></div>DLNA enabled</span><span id="Printer_Enabled" class="simple-desc"><div id="Printer_Enabled_Led" class="light off"></div>Printer sharing disabled</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    </div>
+    
+
+<!DOCTYPE HTML>
+<body>
+<div class="container">
+ 
+  </div>
+</body>
+</html>
+
+    <div class="row"><div class="copyright span12"><p>&copy; Vantiva 2026</p></div></div>
+  </div>
+
+<script type="text/javascript">
+
+  $('#webui_language').prepend('<option value="auto">Auto</option>');
+
+var wizard  = 'false'
+var showZwave = 'false'
+var wizard_accessed = ''
+var current_role = 'admin';
+var processMsg='Processing';
+var openMsg = 'Loading...';
+var waitMsg = 'Please wait...';
+var loginMsg ='Login Expired. Reloading.';
+var okButton = 'Ok';
+var cancelButton = 'Cancel';
+var poperrorMsg = 'Same site cannot be added for multiple times';
+var errorMsg = 'Please enter the valid URL';
+var errorGroup = new Array("Internal Server Error occured, please contact administrator", "The requested file is not found! Please try again after some time", "The server is currently unavailable, Please try again after some time", "The server timed out waiting for the request", "The request could not be performed due to some error");
+</script>
+<script src="/js/gateway.js"></script>
+</body>
+</html>

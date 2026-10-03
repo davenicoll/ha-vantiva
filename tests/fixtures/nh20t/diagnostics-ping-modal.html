@@ -1,0 +1,57 @@
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Diagnostics Ping & Traceroute</h2>
+            </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+
+<div class = "modal-body no-save update">
+<ul class="nav nav-tabs">
+
+<li class=""><a id ="Connection" href="#" data-remote="/modals/diagnostics-connection-modal.lp">Connection</a></li><li class="active"><a id ="Ping & Traceroute" href="#" data-remote="/modals/diagnostics-ping-modal.lp">Ping & Traceroute</a></li><li class=""><a id ="Network" href="#" data-remote="/modals/diagnostics-network-modal.lp">Network</a></li><li class=""><a id ="Tcpdump" href="#" data-remote="/modals/diagnostics-tcpdump-modal.lp">Tcpdump</a></li><li class=""><a id ="Graphing" href="#" data-remote="/modals/diagnostics-graphs-modal.lp">Graphing</a></li><li class=""><a id ="MoCA Statistics" href="#" data-remote="/modals/diagnostics-moca-modal.lp">MoCA Statistics</a></li>
+</ul>
+
+
+<form class = "form-horizontal" method = "post" action = "modals/diagnostics-ping-modal.lp">
+  <fieldset id = "diagnostics-ping-tab">
+    <legend>Ping Statistics</legend>
+
+      <div class = "control-group">
+        <label class = "control-label"></label>
+          <div class = "controls">
+            
+              <div id = "send-config_PING" class = "btn" data-name = "action" data-value = "PING">Send Ping Request</div>
+            
+          </div>
+      </div>
+
+      <div class="control-group"><label class="control-label">Status:</label><div class="controls"><span id="Status:" class=" simple-desc span8"> </span></div></div><div class="control-group"><label class="control-label">Success Count:</label><div class="controls"><span id="Success Count:" class="span2 simple-desc">0</span></div></div><div class="control-group"><label class="control-label">Failure Count:</label><div class="controls"><span id="Failure Count:" class="span2 simple-desc">0</span></div></div><div class="control-group"><label class="control-label">Protocol Version</label><div class="controls"><select id="ProtocolVersion" class="span3" name="ProtocolVersion" data-for="PING"><option value="IPv4" selected="selected">IPV4</option><option value="IPv6" >IPV6</option></select></div></div><div class="control-group"><label class="control-label">Hostname:</label><div class="controls"><input type="text" name="ipAddress" value="" class="edit-input span3" data-for="PING" id="ipAddress"></div></div><div class="control-group"><label class="control-label">Number of pings:</label><div class="controls"><input type="text" name="NumberOfRepetitions" value="3" class="edit-input span3" data-for="PING" id="NumberOfRepetitions"></div></div><div class="control-group"><label class="control-label">Size (bytes):</label><div class="controls"><input type="text" name="DataBlockSize" value="56" class="edit-input span3" data-for="PING" id="DataBlockSize"></div></div><div class="control-group"><label class="control-label">Min Resp Time:</label><div class="controls"><span id="Min Resp Time:" class="span2 simple-desc">0 ms</span></div></div><div class="control-group"><label class="control-label">Max Resp Time:</label><div class="controls"><span id="Max Resp Time:" class="span2 simple-desc">0 ms</span></div></div><div class="control-group"><label class="control-label">Avg Resp Time:</label><div class="controls"><span id="Avg Resp Time:" class="span2 simple-desc">0 ms</span></div></div><div class="control-group"><table id="pingtrace" class="table table-striped" data-stateid=""><thead><tr><th>Bytes</th><th>IP</th><th>Seq</th><th>TTL</th><th>Time</th></tr></thead><tbody></tbody></table></div><div id="exporting-msg" class="alert  alert-info">Note: The specified number of ICMP data bytes will take additional 8 bytes of ICMP header data.</div>
+    </fieldset>
+
+    <fieldset id = "diagnostics-tracert-tab">
+    <legend>Trace Route</legend>
+
+      <div class = "control-group">
+      <label class = "control-label"></label>
+        <div class = "controls">
+        
+          <div id = "send-config_TRACE" class = "btn" data-name = "action" data-value = "TRACE">Trace Route</div>
+        
+        </div>
+      </div>
+
+      <div style = "max-width:880px;overflow-x:auto;">
+      <div class="control-group"><label class="control-label">Status:</label><div class="controls"><span id="Status:" class=" simple-desc span8"> </span></div></div><div class="control-group"><label class="control-label">Protocol Version</label><div class="controls"><select id="ProtocolVersionTrace" class="span3" name="ProtocolVersionTrace" data-for="TRACE"><option value="IPv4" selected="selected">IPV4</option><option value="IPv6" >IPV6</option></select></div></div><div class="control-group"><label class="control-label">Hostname:</label><div class="controls"><input type="text" name="ipAddressTrace" value="" class="edit-input span3" data-for="TRACE" id="ipAddressTrace"></div></div><div class="control-group"><label class="control-label">Max Hop Count:</label><div class="controls"><input pattern="[0-9]{1,2}" type="text" name="MaxHopCount" data-for="TRACE" value="30" class="edit-input span3" maxlength="2" id="MaxHopCount"></div></div><div class="control-group"><label class="control-label">Size (bytes):</label><div class="controls"><input type="text" name="MaxSize" value="46" class="edit-input span3" data-for="TRACE" id="MaxSize"></div></div><div class="control-group"><table id="routehops" class="table table-striped" data-stateid=""><thead><tr><th>Hostname</th><th>Error code</th><th>RTT1 (ms)</th><th>RTT2 (ms)</th><th>RTT3 (ms)</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </fieldset>
+</form>
+</div>
+
+<div class = "modal-footer">
+  <div id = "modal-no-change">
+    <div id = "close_ping_config" class = "btn btn-primary btn-large" data-dismiss = "modal">Close</div>
+  </div>
+</div>
+<script src = "/js/diagnostics-ping-modal-min.js"></script>

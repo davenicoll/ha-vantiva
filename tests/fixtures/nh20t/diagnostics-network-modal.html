@@ -1,0 +1,36 @@
+
+ <div class="modal-header"  data-autorefresh='2'>
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Diagnostics</h2>
+            </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+<div class = "modal-body update">
+  <ul class="nav nav-tabs">
+
+<li class=""><a id ="Connection" href="#" data-remote="/modals/diagnostics-connection-modal.lp">Connection</a></li><li class=""><a id ="Ping & Traceroute" href="#" data-remote="/modals/diagnostics-ping-modal.lp">Ping & Traceroute</a></li><li class="active"><a id ="Network" href="#" data-remote="/modals/diagnostics-network-modal.lp">Network</a></li><li class=""><a id ="Tcpdump" href="#" data-remote="/modals/diagnostics-tcpdump-modal.lp">Tcpdump</a></li><li class=""><a id ="Graphing" href="#" data-remote="/modals/diagnostics-graphs-modal.lp">Graphing</a></li><li class=""><a id ="MoCA Statistics" href="#" data-remote="/modals/diagnostics-moca-modal.lp">MoCA Statistics</a></li>
+</ul>
+
+  
+  <form class = "form-horizontal" method = "post" action = "modals/diagnostics-network-modal.lp">
+  </form>
+    <fieldset id = "diagnostics-network-tab">
+      <legend>Network Statistics</legend>
+      <div class="control-group"><table id="networkstats" class="table table-striped"><thead><tr><th>Interface</th><th>Ports State</th><th>Connected Status</th><th>Rx Bytes</th><th>Tx Bytes</th><th>Rx Packets</th><th>Tx Packets</th><th>Rx Errors</th><th>Tx Errors</th></tr></thead><tbody><tr><td>Port 1</td><td><div id="1" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>1</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div></div></td><td> <p class="socket-legend grayLight" id =eth0>Not connected<p></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td> </tr><tr><td>Port 2</td><td><div id="2" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>2</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div></div></td><td> <p class="socket-legend grayLight" id =eth1>Not connected<p></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td> </tr><tr><td>Port 3</td><td><div id="3" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>3</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div></div></td><td> <p class="socket-legend grayLight" id =eth2>Not connected<p></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td> </tr><tr><td>Port 4</td><td><div id="4" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>4</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div></div></td><td> <p class="socket-legend grayLight" id =eth3>Not connected<p></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td> </tr><tr><td>Port 5</td><td><div id="5" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>5</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div><div class="socket-light green align-right"></div></div></td><td><p class="socket-legend" id =eth4>Connected<p> <p class="socket-legend">2500 Mbps</td><td>1248.93 GB</td><td>3683.82 GB</td><td>1470578154</td><td>3126583920</td><td>6</td><td>0</td> </tr><tr><td>MoCA</td><td><div id="6" class="socket yellow socket-form"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><p>6</p><div class="socket-light off align-right" style="opacity:.5;"></div><div class="socket-light off align-left" style="opacity:.5;"></div></div></td><td> <p class="socket-legend grayLight" id =eth5>Not connected<p></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td> </tr></tbody></table></div>
+      <center>
+        <div id="Reset Stats" class="btn" data-name="stats_reset" data-value="RESET"><i class="icon-bolt"></i>  Reset Stats</div>
+      </center>
+  </fieldset>
+</div>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    

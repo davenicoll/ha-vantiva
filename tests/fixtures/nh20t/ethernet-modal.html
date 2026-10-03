@@ -1,0 +1,68 @@
+
+
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Local Network</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        <span class="modal-action">
+            <span class="modal-action-advanced hide" id="Hide_Advanced_id"><i class="icon-minus-sign"></i> hide advanced</span>
+            <span class="modal-action-advanced" id="Show_Advanced_id"><i class="icon-plus-sign"></i> show advanced</span>
+        </span>
+                </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+  <div class = "modal-body update">
+
+<ul class="nav nav-tabs"><li class="active"><a id ="Lan" href="#" data-remote="/modals/ethernet-modal.lp">Lan</a></li><li class=""><a id ="IP Extras" href="#" data-remote="/modals/iproutes-modal.lp">IP Extras</a></li><li class=""><a id ="Static Subnet" href="#" data-remote="/modals/staticsubnet-modal.lp">Static Subnet</a></li></ul>
+
+
+
+    <form class = "form-horizontal" method = "post" action="&#47;modals&#47;ethernet-modal.lp">
+      
+      <div class = "span2">
+        <ul class = "nav nav-list">
+          <li class="nav-header">LAN Interfaces</li><input value="" class="" name="ipChanged" type="hidden"><input value="" class="" name="ipList" type="hidden"><li class="active"><a id = "lan" href="#" data-remote="modals/ethernet-modal.lp?intf=lan">lan</a></li>
+        </ul>
+      </div>
+      <div class = "span6">
+        
+        <fieldset>
+          
+          <legend>Global Information</legend>
+            <div class="control-group"><label class="control-label">Local Device IPv4 address</label><div class="controls"><input type="text" name="localdevIP" value="192.168.1.254" class="edit-input span3" id="localdevIP"></div></div><div class="control-group advanced hide"><label class="control-label">Local Network subnet</label><div class="controls"><input type="text" name="localdevmask" value="255.255.255.0" class="edit-input span3" id="localdevmask"></div></div><div class="control-group advanced hide"><label class="control-label">Restore Default Configuration</label><div class="controls"><div id="btn-dhcp-reset" class="btn"><i class="icon-bolt"></i>  Reset Configuration</div></div></div>
+              <legend>DHCP Settings</legend>
+              <div class="control-group"><label class="control-label">DHCP Server</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="server" valOff="disabled"></div><input value="server" type="hidden" name="dhcpv4State" id="dhcpv4State"></div></div></div><div class="control-group advanced hide"><label class="control-label">Network address</label><div class="controls"><span id="Network address" class="span2 simple-desc">192.168.1.0</span></div></div><div class="control-group advanced hide"><label class="control-label">DNS server</label><div class="controls"><input type="text" name="dnsServer" value="192.168.1.30" class="edit-input span3" id="dnsServer"></div></div><div class="control-group advanced hide"><label class="control-label">Domain</label><div class="controls"><input type="text" name="domainName" value="lan" class="edit-input span3" id="domainName"></div></div><div class="control-group advanced hide"><label class="control-label">DHCPv6 Stateful</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="dhcpv6Stateful" id="dhcpv6Stateful"></div></div></div>
+                <legend class = "advanced hide control-group">DHCP Pool LAN</legend>
+                <div class="control-group advanced hide"><label class="control-label">Start address</label><div class="controls"><input type="text" name="dhcpStartAddresslan" value="192.168.1.33" class="edit-input span3" id="dhcpStartAddresslan"></div></div><div class="control-group advanced hide"><label class="control-label">End address</label><div class="controls"><input type="text" name="dhcpEndAddresslan" value="192.168.1.253" class="edit-input span3" id="dhcpEndAddresslan"></div></div><div class="control-group advanced hide"><label class="control-label">Lease time</label><div class="controls"><input type="text" name="leaseTimelan" value="24h" class="edit-input span3" id="leaseTimelan"></div></div>
+              
+                  <legend>Static leases</legend>
+                  <div id="confilictipchange-msg" class="alert  alert hide">The latest added/modified static lease is set to an IP that is already in use, please perform a reboot to apply the changes</div><div class="control-group"><table id="sleases" class="table table-striped" data-stateid=""><thead><tr><th>Hostname</th><th>MAC address</th><th>IP</th><th></th><th></th></tr></thead><tbody><tr><td>device-static-01</td><td>02:00:00:00:00:0e</td><td>192.168.1.123</td><td></td> <td><div id="" class="btn btn-mini btn-table-edit tooltip-on" data-placement="top" data-original-title="Edit"><i class="icon-edit"></i>  </div><div id="" class="btn btn-mini btn-danger btn-table-delete tooltip-on" data-placement="top" data-original-title="Delete"><i class="icon-remove-sign icon-large"></i>  </div></td></tr></tbody></table><center><div class="btn-group"><div id="Add new static lease" class="btn btn-table-new"><i class="icon-plus-sign"></i>  Add new static lease</div></div></center></div>
+                   
+          </fieldset>
+              
+          
+          </div>
+          
+          <input type = "hidden" name = "isAdvanced" id = "isAdvanced" value = "0">
+        </form>
+   </div>
+<script>
+  var curintfValue = "lan";
+  var currentlanip = "192.168.1.254";
+  var confirmMessage = "Do you want to reset this page to default settings?";
+  var resetData = {"dhcpv4State":"server","dhcpStartAddresslan":"192.168.1.64","dhcpv6State":"server","dnsServer":"192.168.1.254","localdevmask":"255.255.255.0","leaseTimelan":"24h","dhcpLimit":"190","NetworkAddress":"192.168.1.0","dhcpEndAddresslan":"192.168.1.253","localdevIP":"192.168.1.254","ra":"server","dhcpStart":"64"};
+  var inUseFlagValue = false;
+  var dnsServerRoleSupported = "true";
+</script>
+<script src="/js/ethernet-min.js"></script>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    

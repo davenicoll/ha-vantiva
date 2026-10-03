@@ -1,0 +1,71 @@
+
+
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> WAN services</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        <span class="modal-action">
+            <span class="modal-action-advanced hide" id="Hide_Advanced_id"><i class="icon-minus-sign"></i> hide advanced</span>
+            <span class="modal-action-advanced" id="Show_Advanced_id"><i class="icon-plus-sign"></i> show advanced</span>
+        </span>
+                </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+<style>
+  .tooltip-inner {
+    max-width: 100% !important;
+  }
+</style>
+<div class="modal-body update">
+  <form class="form-horizontal" method="post" action="modals/wanservices-modal.lp">
+    
+<ul class="nav nav-tabs"><li class="active"><a id ="Port Mapping" href="#" data-remote="/modals/wanservices-modal.lp">Port Mapping</a></li><li class=""><a id ="DNS & DynDNS" href="#" data-remote="/modals/dyndns-wanservices-modal.lp">DNS & DynDNS</a></li><li class=""><a id ="Settings" href="#" data-remote="/modals/nat-alg-helper-modal.lp">Settings</a></li></ul>
+
+
+    
+
+    <fieldset>
+      <legend>IPv4 Port forwarding table</legend>
+      <div class="control-group"><table id="portforwarding" class="table table-striped" data-stateid=""><thead><tr><th></th><th>Name</th><th>Protocol</th><th>WAN port</th><th>LAN port</th><th>Source IP</th><th>Destination IP</th><th>Destination MAC</th><th></th></tr></thead><tbody><tr><td><div class="switch switch disabled switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="enabled" id="enabled"></div></td><td>Service B</td><td>TCP/UDP</td><td>3478</td><td>3478</td><td></td><td>192.168.1.146 </td><td></td> <td><div id="" class="btn btn-mini btn-table-edit tooltip-on" data-placement="top" data-original-title="Edit"><i class="icon-edit"></i>  </div><div id="" class="btn btn-mini btn-danger btn-table-delete tooltip-on" data-placement="top" data-original-title="Delete"><i class="icon-remove-sign icon-large"></i>  </div></td></tr><tr><td><div class="switch switch disabled switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="enabled" id="enabled"></div></td><td>Service B HTTPS</td><td>TCP</td><td>HTTPS (443)</td><td>5349</td><td></td><td>192.168.1.146 </td><td></td> <td><div id="" class="btn btn-mini btn-table-edit tooltip-on" data-placement="top" data-original-title="Edit"><i class="icon-edit"></i>  </div><div id="" class="btn btn-mini btn-danger btn-table-delete tooltip-on" data-placement="top" data-original-title="Delete"><i class="icon-remove-sign icon-large"></i>  </div></td></tr><tr><td><div class="switch switch disabled switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="enabled" id="enabled"></div></td><td>Service A</td><td>TCP</td><td>32400</td><td>32400</td><td></td><td>192.168.1.123 </td><td>02:00:00:00:00:0e</td> <td><div id="" class="btn btn-mini btn-table-edit tooltip-on" data-placement="top" data-original-title="Edit"><i class="icon-edit"></i>  </div><div id="" class="btn btn-mini btn-danger btn-table-delete tooltip-on" data-placement="top" data-original-title="Delete"><i class="icon-remove-sign icon-large"></i>  </div></td></tr></tbody></table><center><div class="btn-group"><div id="Add new IPv4 port mapping" class="btn btn-table-new"><i class="icon-plus-sign"></i>  Add new IPv4 port mapping</div><div class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1" ><span class="caret"></span></div><ul class="dropdown-menu"><li><a href="#" class="btn-table-new-list" data-listid="1" >AIM Talk</a></li><li><a href="#" class="btn-table-new-list" data-listid="2" >Apple Remote Desktop</a></li><li><a href="#" class="btn-table-new-list" data-listid="3" >Remote Assistance XP</a></li><li><a href="#" class="btn-table-new-list" data-listid="4" >Bearshare</a></li><li><a href="#" class="btn-table-new-list" data-listid="5" >BitTorrent</a></li><li><a href="#" class="btn-table-new-list" data-listid="6" >Checkpoint FW1</a></li><li><a href="#" class="btn-table-new-list" data-listid="7" >Gnutella</a></li><li><a href="#" class="btn-table-new-list" data-listid="8" >ICQ</a></li><li><a href="#" class="btn-table-new-list" data-listid="9" >iMesh</a></li><li><a href="#" class="btn-table-new-list" data-listid="10" >IRC server</a></li><li><a href="#" class="btn-table-new-list" data-listid="11" >iTunes</a></li><li><a href="#" class="btn-table-new-list" data-listid="12" >Kazaa</a></li><li><a href="#" class="btn-table-new-list" data-listid="13" >Napster</a></li><li><a href="#" class="btn-table-new-list" data-listid="14" >OpenVPN</a></li><li><a href="#" class="btn-table-new-list" data-listid="15" >pcAnywhere</a></li><li><a href="#" class="btn-table-new-list" data-listid="16" >PPTP</a></li><li><a href="#" class="btn-table-new-list" data-listid="17" >FTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="18" >DHCPv6 server</a></li><li><a href="#" class="btn-table-new-list" data-listid="19" >DNS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="20" >HTTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="21" >HTTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="22" >IMAP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="23" >IMAPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="24" >Lotus Note server</a></li><li><a href="#" class="btn-table-new-list" data-listid="25" >MAMP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="26" >MySQL server</a></li><li><a href="#" class="btn-table-new-list" data-listid="27" >NNTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="28" >NNTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="29" >POP3 server</a></li><li><a href="#" class="btn-table-new-list" data-listid="30" >POP3S server</a></li><li><a href="#" class="btn-table-new-list" data-listid="31" >SQL server</a></li><li><a href="#" class="btn-table-new-list" data-listid="32" >SSH server</a></li><li><a href="#" class="btn-table-new-list" data-listid="33" >SMTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="34" >SMTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="35" >Telnet server</a></li><li><a href="#" class="btn-table-new-list" data-listid="36" >X Windows</a></li><li><a href="#" class="btn-table-new-list" data-listid="37" >Yahoo Messenger</a></li><li><a href="#" class="btn-table-new-list" data-listid="38" >Xbox Live</a></li></ul></div></center></div><div id="portRange4" class="alert  alert alert-range hide">To use port ranges use <strong>":"</strong> for example 500:505.</div>
+    </fieldset>
+
+    
+    
+      <fieldset>
+        <legend>IPv6 Wan To Lan Access</legend>
+        <div class="control-group"><label class="control-label">Enabled</label><div style="pointer-events: none; opacity: 0.5;" class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="ipv6wan2lan" id="ipv6wan2lan"></div></div></div><div class="alert alert-error">Warning! IPv6 address is currently not available</div>
+      </fieldset>
+    
+    <fieldset>
+      
+        
+          <legend>IPv6 forwarding table</legend>
+        
+      
+        <div style="pointer-events: none; opacity: 0.5;" class="control-group"><table id="fwrules_v6" class="table table-striped" data-stateid=""><thead><tr><th></th><th>Name</th><th>Protocol</th><th>Destination port</th><th>Source IP</th><th>Destination IP</th><th>Destination MAC</th><th></th></tr></thead><tbody></tbody></table><center><div class="btn-group"><div id="Add new IPv6 forwarding rule" class="btn btn-table-new"><i class="icon-plus-sign"></i>  Add new IPv6 forwarding rule</div><div class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1" ><span class="caret"></span></div><ul class="dropdown-menu"><li><a href="#" class="btn-table-new-list" data-listid="1" >AIM Talk</a></li><li><a href="#" class="btn-table-new-list" data-listid="2" >Apple Remote Desktop</a></li><li><a href="#" class="btn-table-new-list" data-listid="3" >Remote Assistance XP</a></li><li><a href="#" class="btn-table-new-list" data-listid="4" >Bearshare</a></li><li><a href="#" class="btn-table-new-list" data-listid="5" >BitTorrent</a></li><li><a href="#" class="btn-table-new-list" data-listid="6" >Checkpoint FW1</a></li><li><a href="#" class="btn-table-new-list" data-listid="7" >Gnutella</a></li><li><a href="#" class="btn-table-new-list" data-listid="8" >ICQ</a></li><li><a href="#" class="btn-table-new-list" data-listid="9" >iMesh</a></li><li><a href="#" class="btn-table-new-list" data-listid="10" >IRC server</a></li><li><a href="#" class="btn-table-new-list" data-listid="11" >iTunes</a></li><li><a href="#" class="btn-table-new-list" data-listid="12" >Kazaa</a></li><li><a href="#" class="btn-table-new-list" data-listid="13" >Napster</a></li><li><a href="#" class="btn-table-new-list" data-listid="14" >OpenVPN</a></li><li><a href="#" class="btn-table-new-list" data-listid="15" >pcAnywhere</a></li><li><a href="#" class="btn-table-new-list" data-listid="16" >PPTP</a></li><li><a href="#" class="btn-table-new-list" data-listid="17" >FTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="18" >DHCPv6 server</a></li><li><a href="#" class="btn-table-new-list" data-listid="19" >DNS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="20" >HTTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="21" >HTTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="22" >IMAP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="23" >IMAPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="24" >Lotus Note server</a></li><li><a href="#" class="btn-table-new-list" data-listid="25" >MAMP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="26" >MySQL server</a></li><li><a href="#" class="btn-table-new-list" data-listid="27" >NNTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="28" >NNTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="29" >POP3 server</a></li><li><a href="#" class="btn-table-new-list" data-listid="30" >POP3S server</a></li><li><a href="#" class="btn-table-new-list" data-listid="31" >SQL server</a></li><li><a href="#" class="btn-table-new-list" data-listid="32" >SSH server</a></li><li><a href="#" class="btn-table-new-list" data-listid="33" >SMTP server</a></li><li><a href="#" class="btn-table-new-list" data-listid="34" >SMTPS server</a></li><li><a href="#" class="btn-table-new-list" data-listid="35" >Telnet server</a></li><li><a href="#" class="btn-table-new-list" data-listid="36" >X Windows</a></li><li><a href="#" class="btn-table-new-list" data-listid="37" >Yahoo Messenger</a></li><li><a href="#" class="btn-table-new-list" data-listid="38" >Xbox Live</a></li></ul></div></center></div><div class="alert alert-error">Warning! IPv6 address is currently not available</div><div id="portRange6" class="alert  alert alert-range hide">To use port ranges use <strong>":"</strong> for example 500:505.</div>
+      </fieldset>
+    
+
+    <fieldset>
+      <legend>UPnP</legend>
+      <div class="control-group advanced hide"><label class="control-label">UPnP Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="upnp_status" id="upnp_status"></div></div></div><div class="control-group advanced hide"><label class="control-label">NAT-PMP Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="upnp_natpmp" id="upnp_natpmp"></div></div></div><div class="control-group advanced hide"><label class="control-label">Secure Mode Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="upnp_secure_mode" id="upnp_secure_mode"></div></div></div><div class="control-group advanced hide"><label class="control-label">Datamodel Version</label><div class="controls"><select id="upnp_igd_version" class="span3" name="upnp_igd_version"><option value="igdv1" >1</option><option value="igdv2" selected="selected">2</option></select></div></div><div class="control-group"><label class="control-label"></label><div class="controls"><span id="" class=" simple-desc span12 advanced hide">Note: Datamodel version <b>1</b> may be required for older applications.</span></div></div><div class="control-group"><table id="upnpportforwarding" class="table table-striped" data-stateid=""><thead><tr><th>Protocol</th><th>WAN port</th><th>LAN port</th><th>Source IP</th><th>Destination</th><th>Description</th></tr></thead><tbody></tbody></table></div>
+    </fieldset>
+  </form>
+</div>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+
+<script>
+var sourceIPValue = 0;
+var IPv6Port = true;
+</script>
+<script src="/js/wanservices-min.js"></script>

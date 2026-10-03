@@ -1,0 +1,111 @@
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> System Information</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        <span class="modal-action">
+            <span class="modal-action-advanced hide" id="Hide_Advanced_id"><i class="icon-minus-sign"></i> hide advanced</span>
+            <span class="modal-action-advanced" id="Show_Advanced_id"><i class="icon-plus-sign"></i> show advanced</span>
+        </span>
+                </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+
+<div class="modal-body update">
+
+<ul class="nav nav-tabs"><li class="active"><a id ="systemInfoGlobal" href="#" data-remote="/modals/system-info-modal.lp">Global Information</a></li><li class=""><a id ="Time Management" href="#" data-remote="/modals/time-management-modal.lp">Time Management</a></li><li class=""><a id ="Configuration" href="#" data-remote="/modals/system-config-modal.lp">Configuration</a></li></ul>
+
+
+<form class="form-horizontal" method="post" action="modals/system-info-modal.lp">
+  <fieldset>
+  <legend>Information</legend>
+    <div class="control-group"><label class="control-label">Product Vendor</label><div class="controls"><span id="Product Vendor" class=" simple-desc span5">Technicolor</span></div></div><div class="control-group"><label class="control-label">Product Name</label><div class="controls"><span id="Product Name" class=" simple-desc span5">NH20T</span></div></div><div class="control-group"><label class="control-label">Serial Number</label><div class="controls"><span id="Serial Number" class=" simple-desc span5">CP0000000000</span></div></div><div class="control-group"><label class="control-label">Software Version</label><div class="controls"><span id="Software Version" class=" simple-desc span5">20.3.i.0565.17</span></div></div><div class="control-group"><label class="control-label">Uptime since last reboot</label><div class="controls"><span id="Uptime since last reboot" class=" simple-desc span5">49 days 22 hours 3 minutes 52 seconds</span></div></div><div class="control-group advanced hide"><label class="control-label">Firmware Version</label><div class="controls"><span id="Firmware Version" class=" simple-desc span5">20.3.i.0565-4629006-20260217054338.17</span></div></div><div class="control-group advanced hide"><label class="control-label">Firmware OID</label><div class="controls"><span id="Firmware OID" class=" simple-desc span5">6993f1fa82e3ee01a376de63</span></div></div><div class="control-group advanced hide"><label class="control-label">Bootloader Version</label><div class="controls"><span id="Bootloader Version" class=" simple-desc span5">20.40.1375-0000000-20200928115941-752ce4e29b33fdfa861d39bfeccbf62f41189338</span></div></div><div class="control-group advanced hide"><label class="control-label">Bootloader OID</label><div class="controls"><span id="Bootloader OID" class=" simple-desc span5">5f71d05c58c6fb4e96687d26</span></div></div><div class="control-group advanced hide"><label class="control-label">Hardware Version</label><div class="controls"><span id="Hardware Version" class=" simple-desc span5">GCNT-K</span></div></div><div class="control-group advanced hide"><label class="control-label">MAC Address</label><div class="controls"><span id="MAC Address" class=" simple-desc span5">02:00:00:00:00:26</span></div></div><div class="control-group"><label class="control-label">PowerSaving Mode</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="powerSavingMode" id="powerSavingMode"></div></div></div><div class="control-group "><label class="control-label">Front Led Level</label><div class="controls"><div class="noUiSlider slider-select span2 no-margin horizontal"><select id="front_led_level" class="span3 hide monitor-changes" name="front_led_level"><option value="Off" ><strong>Off</strong></option><option value="Low" ><strong>Low</strong></option><option value="Medium" ><strong>Medium</strong></option><option value="High" selected="selected"><strong>High</strong></option></select></div><div id="Slider_ID" class="noUiSlider-text simple-desc"></div></div></div><div class="control-group"><label class="control-label">Moca Led Level</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="moca_led" id="moca_led"></div></div></div><div class="control-group"><label class="control-label">Ethernet Led Level</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="ethernet_led" id="ethernet_led"></div></div></div><div class="control-group hide"><label class="control-label"></label><div class="controls"><input type="text" name="moca_led_level" value="Off" class="edit-input  span4" id="moca_led_level"></div></div><div class="control-group hide"><label class="control-label"></label><div class="controls"><input type="text" name="ethernet_led_level" value="High" class="edit-input  span4" id="ethernet_led_level"></div></div>
+  </fieldset>
+  <fieldset class="advanced hide">
+  <legend>System Health</legend>
+    <div class="control-group advanced hide"><label class="control-label">Memory Usage</label><div class="controls"><span id="Memory Usage" class=" simple-desc span5">54 %</span></div></div><div class="control-group advanced hide"><label class="control-label">CPU Usage</label><div class="controls"><span id="CPU Usage" class=" simple-desc span5">2 %</span></div></div><div class="control-group advanced hide"><label class="control-label">Reboot Cause</label><div class="controls"><span id="Reboot Cause" class=" simple-desc span5">User Initiated</span></div></div>
+</form>
+</div>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+<script>
+  var showLedButton = "true";
+  function ledControl(id, id_level){
+    $(id).closest(".switch").addClass("switchOn")
+    $(id).siblings('.switcher').addClass("switcherOn")
+    $(id_level).val("High")
+    $(id).closest(".control-group .controls").css({"pointer-events":"","opacity":""})
+  }
+  if (showLedButton == "true") {
+    var powerSavingModeState = "0";
+    var frontLed = "High";
+    var frontLedSlider = "100%";
+    var mocaStateisDown = true;
+    var ethernetState = true;
+    var wifiRadiosDisabled = false;
+    var redLedState = false;
+    if ((wifiRadiosDisabled) || (redLedState)){
+      $("[id='front_led_level']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+      $("[id='powerSavingMode']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+    }
+    if (mocaStateisDown) {
+      $("[id='moca_led']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+    }
+    if (!ethernetState) {
+      $("[id='ethernet_led']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+    }
+    if (powerSavingModeState == "1") {
+      $("[id='front_led_level']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+      $("[id='moca_led']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+      $("[id='ethernet_led']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+    }
+  }
+  $(".switch").click(function() {
+    if ($(this).find("#powerSavingMode").length == "1") {
+      if ($("#powerSavingMode").val() == "0") {
+        $("[id='ethernet_led'], [id='moca_led'], [id='front_led_level']").closest(".control-group .controls").css({"pointer-events":"none","opacity":"0.5"})
+        $("#ethernet_led, #moca_led").closest(".switch").removeClass("switchOn")
+        $("#ethernet_led, #moca_led").siblings('.switcher').removeClass("switcherOn")
+        $("#ethernet_led_level, #moca_led_level").val("Off")
+        $("#Slider_ID").text("Off")
+        $("#front_led_level").val("Off")
+        $(".noUi-origin").css("left", "0%")
+      }
+      else{
+      $("[id='front_led_level']").closest(".control-group .controls").css({"pointer-events":"","opacity":""})
+        if (ethernetState) {
+          ledControl("#ethernet_led", "#ethernet_led_level")
+        }
+        if (!mocaStateisDown) {
+          ledControl("#moca_led", "#moca_led_level")
+        }
+        $("#Slider_ID").text(frontLed)
+        $("#front_led_level").val(frontLed)
+        $(".noUi-origin").css("left", frontLedSlider)
+      }
+    }
+    if ($(this).find("#moca_led").length == "1") {
+      if ($("#moca_led").val() == "1") {
+        $("#moca_led_level").val("Off")
+      } else if($("#moca_led").val() == "0") {
+        $("#moca_led_level").val("High")
+      }
+    }
+    if ($(this).find("#ethernet_led").length == "1") {
+      if ($("#ethernet_led").val() == "1") {
+        $("#ethernet_led_level").val("Off")
+      } else if($("#ethernet_led").val() == "0") {
+        $("#ethernet_led_level").val("High")
+      }
+    }
+  });
+</script>
+

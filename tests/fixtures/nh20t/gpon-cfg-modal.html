@@ -1,0 +1,33 @@
+
+
+
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> GPON Link</h2>
+            </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+
+<div class="modal-body update">
+    <ul class="nav nav-tabs"><li class="active"><a id="GPON Link Configuration" href="#" data-remote="modals&#47;gpon-cfg-modal.lp">GPON Link Configuration</a></li><li ><a id="Local Port Mode" href="#" data-remote="modals&#47;gpon-port-config-modal.lp">Local Port Mode</a></li><li ><a id="SLID Registration" href="#" data-remote="modals&#47;gpon-slid.lp">SLID Registration</a></li></ul>
+    <form class="form-horizontal" method="post" action="modals/gpon-cfg-modal.lp">
+	    <fieldset>
+            <legend>Configuration</legend>
+            <div class="control-group"><label class="control-label">Password Format</label><div class="controls"><select id="formatparam" class="span3" name="formatparam"><option value="hex" >HEX</option><option value="ascii" >ASCII</option></select></div></div><div class="control-group"><label class="control-label">Password Value</label><div class="controls"><input type="text" name="val" value="" class="edit-input span3" id="val"></div></div>
+        </fieldset>
+    </form>
+</div>
+
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+

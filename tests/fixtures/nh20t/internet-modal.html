@@ -1,0 +1,50 @@
+
+
+<form class = "form-horizontal" method = "post" action = "modals/internet-modal.lp">
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Internet Access</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        <span class="modal-action">
+            <span class="modal-action-advanced hide" id="Hide_Advanced_id"><i class="icon-minus-sign"></i> hide advanced</span>
+            <span class="modal-action-advanced" id="Show_Advanced_id"><i class="icon-plus-sign"></i> show advanced</span>
+        </span>
+                </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+<div class="modal-body update">
+<ul class="nav nav-tabs"><li class="active"><a id="IPv4 Configuration" href="#" data-remote="modals&#47;internet-modal.lp">IPv4 Configuration</a></li><li ><a id="IPv6 Configuration" href="#" data-remote="modals&#47;internet-ex-modal.lp">IPv6 Configuration</a></li></ul><ul class="nav nav-tabs"><li class="active"><a id="Configuration" href="#" data-remote="modals&#47;internet-dhcp-routed.lp">Configuration</a></li></ul>
+<form class = "form-horizontal" method = "post" action = "modals/internet-dhcp-routed.lp">
+<fieldset>
+<legend>DHCP connection</legend>
+</fieldset>
+<fieldset>
+<legend>Status</legend>
+   <div class="control-group"><label class="control-label">Status</label><div id="wan_status" class="controls" data-ajaxrefresh="5"><span class="simple-desc"><div id="DHCP_Status_LED" class="light green"></div>Connected</span></div></div>
+</fieldset>
+<fieldset>
+<legend>Configuration</legend>
+<div class="control-group"><label class="control-label">Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="uci_wan_auto" id="uci_wan_auto"></div></div></div><div class="control-group"><label class="control-label">NAT</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="uci_wan_masq" id="uci_wan_masq"></div></div></div><div class="control-group"><label class="control-label">IPv4 address</label><div class="controls"><span id="ipaddr" class="span2 simple-desc" data-ajaxrefresh="5">203.0.113.58</span></div></div><div class="control-group"><label class="control-label">Gateway</label><div class="controls"><span id="nexthop" class="span2 simple-desc" data-ajaxrefresh="5">203.0.113.1</span></div></div><div class="control-group"><label class="control-label">DNS servers</label><div class="controls"><span id="dns" class="span2 simple-desc" data-ajaxrefresh="5">198.51.100.67,198.51.100.116</span></div></div><div class="control-group"><label class="control-label">Lease obtained</label><div class="controls"><span id="leaseobtained" class="span2 simple-desc" data-ajaxrefresh="5">2026-10-03 09:21:41</span></div></div><div class="control-group"><label class="control-label">Lease expires</label><div class="controls"><span id="leaseexpires" class="span2 simple-desc" data-ajaxrefresh="5">2026-10-03 13:21:41</span></div></div><div class="control-group advanced hide"><label class="control-label">Release and Renew</label><div class="controls"><div id="btn-dhcp-release-renew" class="btn custom-handler"><i class="icon-refresh"></i>  Release and Renew</div></div></div>
+</fieldset>
+
+<fieldset class = "advanced hide">
+  <legend>DHCP statistics</legend>
+  <div class="control-group"><label class="control-label">Discard Packets</label><div class="controls"><span id="Discard Packets" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 0 Pkd <i class="icon-download icon-large gray"></i> 0 Pkd</span></div></div><div class="control-group"><label class="control-label">Broadcast Packets</label><div class="controls"><span id="Broadcast Packets" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 3 Pkd <i class="icon-download icon-large gray"></i> 0 Pkd</span></div></div><div class="control-group"><label class="control-label">Multicast Packets</label><div class="controls"><span id="Multicast Packets" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 311799 Pkd <i class="icon-download icon-large gray"></i> 66354 Pkd</span></div></div><div class="control-group"><label class="control-label">Unicast Packets</label><div class="controls"><span id="Unicast Packets" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 1475233916 Pkd <i class="icon-download icon-large gray"></i> 3129701623 Pkd</span></div></div><div class="control-group"><label class="control-label">Packets</label><div class="controls"><span id="Packets" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 1475545718 Pkd <i class="icon-download icon-large gray"></i> 3129767977 Pkd</span></div></div><div class="control-group"><label class="control-label">Errors</label><div class="controls"><span id="Errors" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 0 Pkd <i class="icon-download icon-large gray"></i> 0 Pkd</span></div></div><div class="control-group"><label class="control-label">Bytes</label><div class="controls"><span id="Bytes" class="span2 simple-desc"><i class="icon-upload icon-large gray"></i> 1393232473707 Bytes <i class="icon-download icon-large gray"></i> 3939997125741 Bytes</span></div></div><div class="control-group"><label class="control-label">Unknown Proto Packets</label><div class="controls"><span id="Unknown Proto Packets" class="span2 simple-desc"><i class="icon-download icon-large gray"></i> 0 Pkd</span></div></div>
+</fieldset>
+</form>
+</div>
+<script src="/js/internet-routed-settings-min.js"></script>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+
+</form>
+

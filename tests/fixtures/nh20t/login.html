@@ -1,0 +1,126 @@
+
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <meta charset = "UTF-8">
+    <meta name = "CSRFtoken" content = "0000000000000000000000000000000000000000000000000000000000000000">
+    <link href = "/css/gw.css" rel = "stylesheet">
+    <link href = "/css/responsive.css" rel = "stylesheet">
+    <!--[if IE 7]><link rel="stylesheet" href="/css/font-awesome-ie7.css"><![endif]-->
+    <script src = "/js/main-min.js" ></script>
+    <script src="/js/jquery-eval-patch.js"></script>
+    <!--[if lt IE 9]> <script src="/js/media-min.js"></script> <![endif]-->
+    <script src = "/js/srp-min.js" ></script>
+
+    
+    <title>Login</title>
+</head>
+<body>
+  <div class = "container">
+    
+      <div class = "logo-technicolor"><a href = "http:&#47;&#47;www.technicolor.com" target = "_blank"><img src = "/img/logo.gif"></a></div>
+    
+    <div class = "row">
+      <div class = "offset4 span4">
+        <div class = "login" id = "login">
+        <form class = "form-horizontal">
+          <fieldset>
+             <h2>Sign in</h2>
+             
+            <div id = "erroruserpass" class = "alert alert-error hide">
+               <strong>Invalid Username or Password</strong>
+            </div>
+            <div class = "control-group">
+                <label for = "srp_username"><div class = "label-icon">
+                    <i class = "icon-user icon-large"></i>
+                </div></label>
+                    <input class = "span3" type = "text" placeholder = "Your username" id = "srp_username" value = "admin" autofocus><br><br>
+            </div>
+            <div class = "control-group">
+               <label for = "srp_password"><div class = "label-icon"><i class = "icon-lock icon-large"></i></div></label>
+               <input class = "span3" type = "password" placeholder = "Your password" id = "srp_password" autocomplete = "new-password"><br><br>
+            </div>
+            <div style="text-align:right;"><input type="checkbox" onclick="showPass()" style="position: relative;bottom: 4px;right: 4px;">Show Password</div>
+            <!-- HIDE WARNING - NOT NOT USED IN DEFAULT CUSTO
+            <div id = "defaultpassword" class = "alert alert-info hide">
+                If you haven't changed it, the default password can be found on the sticker under your gateway (it's called <strong>"access code"</strong>)
+            </div>
+            -->
+            <div class = "pull-right" style="position:relative;top:10px;">
+                <a href = "/" class = "btn btn-primary btn-large">Cancel</a>
+                &nbsp;
+                <div id = "sign-me-in" class = "btn btn-primary btn-large">Sign in</div>
+            </div>
+            
+               <div id = "forgot-login-password">
+                 <a href = "#">Forgot Login Password</a>
+               </div>
+            
+          </fieldset>
+        </form>
+      </div>
+      
+        <div class = "login hide" id = "forgot-login">
+          <form class = "form-horizontal">
+            <fieldset>
+              <h2>Reset Password</h2>
+              <div id = "erroruserpass1" class = "alert alert-error hide">
+                <strong>Invalid Password</strong>
+              </div>
+              <div class = "control-group">
+                <label for = "srp_password1" class = "alert-info">Enter the default <strong>"admin"</strong> password. This is located on the gateway label, under the cover panel.</label>
+                <label for = "srp_password1"><div class = "label-icon"><i class = "icon-lock icon-large"></i></div></label>
+                <input class = "span3" type = "password" placeholder = "Your password" id = "srp_password1"><br><br>
+              </div>
+              <div class = "pull-right">
+                <a href = "/" class = "btn btn-primary btn-large">Cancel</a>&nbsp;
+                <div id = "verify-password" class = "btn btn-primary btn-large">Verify</div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      
+     </div>
+    </div>
+    
+    <div class = "row"><div class = "copyright span12"><p></p><p>&copy; Vantiva 2026</p></div></div>
+  </div>
+  
+    <div class = "modal-fade hide" id = "loginfailure" data-backdrop = "static" role = "dialog">
+      <div class = "popUp smallcard popUp-modal span4" style = "margin-top: -50px">
+        <div class = "header"><div data-toggle = "modal" class = "header-title pull-left"><p>Processing</p></div></div>
+         <div class = "modal-body no-padding">
+           <form class = "form-horizontal">
+             <div>
+               <label id = "wronguser-attempt" for = "inputPassword" class = "control-label wronguser-attempt">You are trying to login with wrong password for <span id="pwdCount"></span> times<br/>Please wait <span id="timerSec"></span> seconds to enter new password</label>
+             </div>
+             <div id = "spinner" class = "spinner" align = "center">
+               <div class = "spinner3">
+                 <div class = "rect1" style = "background-color: rgb(92, 22, 96);"></div>
+                 <div class = "rect2" style = "background-color: rgb(92, 22, 96);"></div>
+                 <div class = "rect3" style = "background-color: rgb(92, 22, 96);"></div>
+                 <div class = "rect4" style = "background-color: rgb(92, 22, 96);"></div>
+                 <div class = "rect5" style = "background-color: rgb(92, 22, 96);"></div>
+               </div>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   
+<script>
+    var triesbeforemsg = 3;
+    var verifying = 'Verifying';
+    var loginFailureAttempt = true;
+    var forgotPassword = true
+        var legacySalts = "";
+        var userNames = "";
+        var signIn = 'Sign in';
+        var lastAccess = true;
+        var loginFailureAttempt = true;
+   var verify = 'Verify';
+</script>
+<script src="/js/login.js"></script>
+</body>
+</html>

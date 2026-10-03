@@ -1,0 +1,95 @@
+
+
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Firewall</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+<style>
+  .tooltip-inner {
+    max-width: 100% !important;
+  }
+</style>
+<div class = "modal-body update">
+  <form class = "form-horizontal" method = "post" action = "modals/firewall-modal.lp">
+    
+    <fieldset>
+      <legend>Firewall level</legend>
+      <div class="control-group "><label class="control-label">Level</label><div class="controls"><select id="fw_level" class="span3 monitor-changes" name="fw_level"><option value="lax" ><strong>Lax</strong></option><option value="normal" selected="selected"><strong>Low</strong></option><option value="high" ><strong>High</strong></option><option value="user" ><strong>User</strong></option></select></div></div><div class="alert  alert-info monitor-fw_level monitor-lax monitor-hidden-fw_level">In <strong>lax mode</strong>, firewall allows all outbound connections and rejects unknown incoming connections but acknowledges presence of the gateway.</div><div class="alert  alert-info monitor-fw_level monitor-normal ">In <strong>low mode</strong>, firewall allows all outbound connections and silently drops unknown incoming connections.</div><div class="alert  alert-info monitor-fw_level monitor-high monitor-hidden-fw_level">In <strong>high mode</strong>, firewall allows outgoing connections to HTTP, HTTPS, SMTP, POP3, IMAP, SSH services and silently drops unknown incoming connections.</div><div class="alert  alert-info monitor-fw_level monitor-user monitor-hidden-fw_level">In <strong>user mode</strong>, individual firewall rules may be configured as well as the default behavior.</div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Firewall default behavior</legend>
+      <div class="control-group"><label class="control-label">Answer All IPv4 Internet pings</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input type="hidden" name="fwv4_ping" id="fwv4_ping" class="monitor-changes" value="0"></div></div></div><div class="alert  alert-info monitor-fwv4_ping monitor-0">Answer only these selected Internet IPv4 pings</div><div class="control-group monitor-fwv4_ping monitor-0"><table id="fwv4_ping_rules" class="table table-striped" data-stateid=""><thead><tr><th>Enabled</th><th>Source IP</th><th>icmp-type</th><th></th><th></th></tr></thead><tbody></tbody></table></div><div class="control-group"><label class="control-label">IPv6 Firewall</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="fw_ipv6" id="fw_ipv6"></div></div></div><div class="control-group"><label class="control-label">Answer All IPv6 Internet pings</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input type="hidden" name="fwv6_ping" id="fwv6_ping" class="monitor-changes" value="0"></div></div></div><div class="alert  alert-info monitor-fwv6_ping monitor-0">Answer only these selected Internet IPv6 pings</div><div class="control-group monitor-fwv6_ping monitor-0"><table id="fwv6_ping_rules" class="table table-striped" data-stateid=""><thead><tr><th>Enabled</th><th>Source IP</th><th>icmp-type</th><th></th><th></th></tr></thead><tbody></tbody></table></div>
+    </fieldset>
+
+    
+      <fieldset class = "advanced hide">
+    
+    <legend></legend>
+    <div class="control-group monitor-fw_level monitor-user monitor-hidden-fw_level"><label class="control-label">Outgoing default policy</label><div class="controls"><select id="fw_outgoing_policy" class="span3" name="fw_outgoing_policy"><option value="ACCEPT" selected="selected">ACCEPT</option><option value="DROP" >DROP</option><option value="REJECT" >REJECT</option></select></div></div><div class="alert  alert-info monitor-fw_level monitor-user monitor-hidden-fw_level">The <strong>outgoing policy</strong> defines what is done with packets coming from the LAN devices toward the internet. Setting it to REJECT or DROP will forbid any internet traffic from the LAN unless explicitly allowed by a firewall rule.</div><div class="control-group monitor-fw_level monitor-user monitor-hidden-fw_level"><label class="control-label">Incoming default policy</label><div class="controls"><select id="fw_incoming_policy" class="span3" name="fw_incoming_policy"><option value="DROP" selected="selected">DROP</option><option value="REJECT" >REJECT</option></select></div></div><div class="alert  alert-info monitor-fw_level monitor-user monitor-hidden-fw_level">The <strong>incoming policy</strong> defines what is done with packets destined to the gateway. They can be either REJECTED (the gateway will notify the sender they were rejected) or DROPPED (the gateway will silently discard those packets).</div>
+    </fieldset>
+
+    <fieldset class = "monitor-fw_level monitor-user monitor-hidden-fw_level">
+      
+      
+        <legend class = "advanced hide">IPv4 Firewall Rules</legend>
+        <div class="alert alert-error advanced hide"><strong>Addition of wildcard rules might create race conditions</strong>, ensure before adding wild card rules</div>
+        <div class="control-group advanced hide"><table id="fwrules" class="table table-striped" data-stateid=""><thead><tr><th></th><th>TrafficType</th><th>Action</th><th>Protocol</th><th>Src IP/Subnet</th><th>Src port</th><th>Dst IP/Subnet</th><th>Dst port</th><th>DSCP</th><th></th></tr></thead><tbody></tbody></table><center><div class="btn-group"><div id="Add new IPv4 firewall rule" class="btn btn-table-new"><i class="icon-plus-sign"></i>  Add new IPv4 firewall rule</div></div></center></div>
+      
+    </fieldset>
+
+    <fieldset class = "monitor-fw_level monitor-user monitor-hidden-fw_level">
+      
+      
+        <legend class = "advanced hide">IPv6 Firewall Rules</legend>
+        <div class="alert alert-error advanced hide"><strong>Addition of wildcard rules might create race conditions</strong>, ensure before adding wild card rules</div>
+        <div class="control-group advanced hide"><table id="fwrules_v6" class="table table-striped" data-stateid=""><thead><tr><th></th><th>TrafficType</th><th>Action</th><th>Protocol</th><th>Src IP/Subnet</th><th>Src port</th><th>Dst IP/Subnet</th><th>Dst port</th><th>DSCP</th><th></th></tr></thead><tbody></tbody></table><center><div class="btn-group"><div id="Add new IPv6 firewall rule" class="btn btn-table-new"><i class="icon-plus-sign"></i>  Add new IPv6 firewall rule</div></div></center></div>
+      
+    </fieldset>
+
+    
+  </form>
+</div>
+
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+
+<script>
+var sipAlg = "0";
+var trafficTypeValue = false;
+var dscpValue = false;
+var protocollist = false;
+if(protocollist == "false") {
+  var portLessProtocol = {};
+  
+    portLessProtocol["icmp"] = true;
+  
+    portLessProtocol["icmpv6"] = true;
+  
+    portLessProtocol["igmp"] = true;
+  
+    portLessProtocol["esp"] = true;
+  
+    portLessProtocol["ah"] = true;
+  
+    portLessProtocol["gre"] = true;
+  
+    portLessProtocol["ipip"] = true;
+  
+    portLessProtocol["all"] = true;
+  
+}
+</script>
+<script src="/js/firewall-min.js"></script>

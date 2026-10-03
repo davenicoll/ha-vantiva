@@ -1,0 +1,118 @@
+
+
+ <div class="modal-header" >
+  <div class="row-fluid">
+    <div class="span11"><h2 class="span4"> Sharing</h2>
+    <span class="modal-action"><span class="modal-action-refresh" id="Refresh_id"><i class="icon-refresh"></i> refresh data</span></span>        <span class="modal-action">
+            <span class="modal-action-advanced hide" id="Hide_Advanced_id"><i class="icon-minus-sign"></i> hide advanced</span>
+            <span class="modal-action-advanced" id="Show_Advanced_id"><i class="icon-plus-sign"></i> show advanced</span>
+        </span>
+                </div>
+    <div class="span1"><a href="#" class="button btn-primary btn-close" data-dismiss="modal"><i class="icon-remove"></i></a></div>
+  </div>
+</div>
+    
+
+<div class = "modal-body update">
+  
+<ul class="nav nav-tabs"><li class="active"><a id ="Content Sharing" href="#" data-remote="/modals/contentsharing-modal.lp">Content Sharing</a></li><li class=""><a id ="Printer Sharing" href="#" data-remote="/modals/printersharing-modal.lp">Printer Sharing</a></li></ul>
+
+
+  <form class = "form-horizontal" method = "post" action = "modals/contentsharing-modal.lp">
+    <div id="success-msg" class="alert  alert alert-success hide">Changes saved successfully</div><fieldset><legend>General status</legend><div class="control-group"><label class="control-label">Samba</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="samba" id="samba"></div></div></div><div id="samba-warning-msg" class="alert  alert-warning hide">Toggling Samba support will disable and turn off Samba Filesharing</div><div class="control-group"><label class="control-label">Samba Filesharing</label><div class="controls"><div id="samba-fileshare" class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="sambaFilesharing" id="sambaFilesharing"></div></div></div><div id="samba-fileshare-msg" class="alert  alert-warning hide">Please enable Samba to turn on Samba Filesharing</div><div class="control-group advanced show"><label class="control-label">Samba name: </label><div class="controls"><span id="Samba name: " class=" simple-desc span4">TELUS</span></div></div><div class="control-group advanced hide"><label class="control-label">Samba name: </label><div class="controls"><input type="text" name="sambaName" value="TELUS" class="edit-input span3" id="sambaName"></div></div><div class="control-group advanced hide"><label class="control-label">Samba workgroup: </label><div class="controls"><input type="text" name="sambaWorkgroup" value="WORKGROUP" class="edit-input span3" id="sambaWorkgroup"></div></div><div class="control-group advanced hide"><label class="control-label">Samba description: </label><div class="controls"><input type="text" name="sambaDescription" value="TELUS Network Access Hub" class="edit-input span3" id="sambaDescription"></div></div><div class="control-group"><label class="control-label">Storage Interface:</label><div class="controls"><span id="Storage Interface:" class="span2 simple-desc">LAN</span></div></div><div class="control-group"><label class="control-label">Disk Protection</label><div class="controls"><div class="switch"><div class="switcher" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="0" type="hidden" name="diskProtection" id="disk-protection"></div></div></div><div class="control-group"><label class="control-label">ID:</label><div class="controls"><input type="text" name="userName" value="" class="edit-input  span4" maxlength="48" id="disk-username"></div></div><div class="control-group"><label class="control-label">Password:</label><div class="controls"><input type="text" name="passWord" value="" class="edit-input  span4" maxlength="64" id="disk-password"></div></div><div class="control-group"><label class="control-label">DLNA Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="dlnaEnabled" id="dlnaEnabled"></div></div></div><div class="control-group advanced show"><label class="control-label">DLNA name: </label><div class="controls"><span id="DLNA name: " class=" simple-desc span4">TELUS Network Access Hub</span></div></div><div class="control-group advanced hide"><label class="control-label">DLNA name: </label><div class="controls"><input type="text" name="dlnaFriendlyName" value="TELUS Network Access Hub" class="edit-input span3" id="dlnaFriendlyName"></div></div><div class="control-group"><label class="control-label">Profiler status: </label><div class="controls"><span id="Profiler status: " class="span2 simple-desc">Idle</span></div></div><div class="control-group advanced hide"><label class="control-label">DLNA Dynamic</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="dlnaDynamic" id="dlnaDynamic"></div></div></div><div class="control-group"><label class="control-label">USB 3.1 Enabled</label><div class="controls"><div class="switch switchOn"><div class="switcher switcherOn" textON="ON" textOFF="OFF" valOn="1" valOff="0"></div><input value="1" type="hidden" name="usb3Enabled" id="toggle-usb3"></div></div></div><div id="warning-msg" class="alert  alert-warning hide">It is recommended to use the USB in the 2.0 standard. The use of USB in 3.1 standard can remarkably affect the Wi-Fi performance at 2.4 Ghz band.</div><div id="reboot-warning-msg" class="alert  alert-warning hide">Toggling USB3.1 support will reboot the Gateway</div><div id="rebooting-msg" class="alert  alert-warning hide">Restarting, please wait...</div><input type="text" name="csFlag" value="0" class="edit-input span3 hide" id="cs-flag"></fieldset><fieldset><legend>Hard Disk Information</legend><div><div id="connecteddevices" class=" simple-desc span3 monitor-changes" data-ajaxrefresh="5">Currently there are <strong>no</strong> connected devices</div><div class="control-group"><table id="usbDev" class="table table-striped"><thead><tr><th>Product Name</th><th>Share</th><th>Volume Size</th><th>Free Space</th><th>Eject</th></tr></thead><tbody></tbody></table></div></fieldset>
+  </form>
+</div>
+     <div class="modal-footer">
+      <div id="modal-no-change">
+        <div id="close-config" class="btn btn-primary btn-large" data-dismiss="modal">Close</div>
+      </div>
+      <div id="modal-changes" class="hide">
+        <div id="cancel-config" class="btn btn-large" data-dismiss="modal">Cancel</div>
+        <div id="save-config" class="btn btn-primary btn-large">Save</div>
+      </div>
+    </div>
+    
+<script>
+var refreshTimeOut = 5000;
+var refreshDelay = 3000;
+var target = $(".modal form").attr("action");
+var usb3Support = $("#toggle-usb3").val();
+var rebootMsg = 'Rebooting...';
+
+var sambaChanged = function(hideWarning) {
+  if($("#samba").val() == "1") {
+    $("#samba-fileshare").addClass("enabled").removeClass("disabled");
+    if (hideWarning != true) {
+      $("#samba-warning-msg, #samba-fileshare-msg").addClass("hide");
+    }
+  } else {
+    if (hideWarning != true) {
+      $("#samba-warning-msg").removeClass("hide");
+    }
+    $("#samba-fileshare-msg").removeClass("hide");
+    $("#samba_filesharing").val("0");
+    $("#samba-fileshare").addClass("disabled").removeClass("enabled");
+  }
+}
+
+sambaChanged(true);
+$("#samba").change(sambaChanged);
+$("#usbDev .eject").click(function(){
+  var index = $(this).attr("index");
+  var tparam = [];
+  tparam.push({
+    name: "action",
+    value :"eject"
+  });
+  tparam.push({
+    name:  "ejectIndex",
+    value: index
+  });
+  tparam.push(tch.elementCSRFtoken());
+  tch.loadModal("/modals/contentsharing-modal.lp", tparam, function(){
+     tch.scrollRowIntoView("usbDev", 1);});
+});
+
+$("#toggle-usb3").change(function() {
+  if($("#toggle-usb3").val() === "1") {
+    $("#warning-msg").removeClass("hide");
+  } else {
+    $("#warning-msg").addClass("hide");
+  }
+  $("#reboot-warning-msg").removeClass("hide");
+  $("#cs-flag").val("1");
+  if(usb3Support === $("#toggle-usb3").val()) {
+    $("#warning-msg").addClass("hide");
+    $("#reboot-warning-msg").addClass("hide");
+  }
+});
+
+//Displaying disk credentials if disk-protection is enabled
+function disk_security() {
+  if ($("#disk-protection").val() === "1") {
+    $("#disk-username, #disk-password").parent().parent().removeClass("hide");
+  }
+  else {
+    $("#disk-username, #disk-password").parent().parent().addClass("hide");
+  }
+}
+
+disk_security();
+$("#disk-protection").change(function() {
+ disk_security();
+});
+
+$(document).on("click", "#save-config", function() {
+  if (($("#cs-flag").val() === "1") && (usb3Support !== $("#toggle-usb3").val())) {
+    $("#rebooting-msg").removeClass("hide");
+    $("#warning-msg").addClass("hide");
+    $("#reboot-warning-msg").addClass("hide");
+    $("#success-msg").addClass("hide");
+  }
+  else {
+    $("#success-msg").removeClass("hide");
+  }
+  $("#samba-warning-msg, #samba-fileshare-msg").addClass("hide");
+});
+
+</script>
