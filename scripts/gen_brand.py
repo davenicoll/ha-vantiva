@@ -7,7 +7,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-OUT = Path(__file__).resolve().parent.parent / "brand"
+OUT = Path(__file__).resolve().parent.parent / "custom_components" / "vantiva" / "brand"
 PURPLE = (94, 39, 165, 255)
 WHITE = (255, 255, 255, 255)
 
