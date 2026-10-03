@@ -6,7 +6,12 @@ from datetime import timedelta
 from unittest.mock import MagicMock
 
 import pytest
-from custom_components.vantiva.const import DOMAIN
+from custom_components.vantiva.const import (
+    CONF_CONSIDER_HOME,
+    CONF_SCAN_INTERVAL,
+    DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
+)
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.const import STATE_HOME, STATE_NOT_HOME, STATE_OFF, STATE_ON
 from homeassistant.core import HomeAssistant
@@ -28,7 +33,9 @@ from .factories import (
 )
 
 
-async def _poll(hass: HomeAssistant, freezer: FrozenDateTimeFactory, seconds: int = 31) -> None:
+async def _poll(
+    hass: HomeAssistant, freezer: FrozenDateTimeFactory, seconds: int = DEFAULT_SCAN_INTERVAL + 1
+) -> None:
     freezer.tick(timedelta(seconds=seconds))
     async_fire_time_changed(hass)
     await hass.async_block_till_done()
@@ -163,11 +170,27 @@ async def test_tracker_consider_home(
     clients[CLIENT_ACTIVE_MAC] = make_lan_client(CLIENT_ACTIVE_MAC, active=False)
     mock_client.async_get_data.return_value = make_data(clients=clients)
 
+    # Default consider_home (180 s) is shorter than the default poll interval (300 s), so a
+    # client that has gone inactive is reported away at the very next poll.
     await _poll(hass, freezer)
-    assert hass.states.get(entity_id).state == STATE_HOME  # within the 180 s default
+    assert hass.states.get(entity_id).state == STATE_NOT_HOME
 
-    for _ in range(6):
-        await _poll(hass, freezer)
+    # With a longer consider_home window the client stays home until the window has passed.
+    clients[CLIENT_ACTIVE_MAC] = make_lan_client(CLIENT_ACTIVE_MAC, active=True)
+    mock_client.async_get_data.return_value = make_data(clients=clients)
+    hass.config_entries.async_update_entry(
+        init_integration,
+        options={CONF_SCAN_INTERVAL: DEFAULT_SCAN_INTERVAL, CONF_CONSIDER_HOME: 1000},
+    )
+    await hass.async_block_till_done()
+    assert hass.states.get(entity_id).state == STATE_HOME
+
+    clients[CLIENT_ACTIVE_MAC] = make_lan_client(CLIENT_ACTIVE_MAC, active=False)
+    mock_client.async_get_data.return_value = make_data(clients=clients)
+    await _poll(hass, freezer)  # ~301 s without being seen: still within 1000 s
+    assert hass.states.get(entity_id).state == STATE_HOME
+    for _ in range(3):
+        await _poll(hass, freezer)  # ~1204 s: past the window
     assert hass.states.get(entity_id).state == STATE_NOT_HOME
 
 

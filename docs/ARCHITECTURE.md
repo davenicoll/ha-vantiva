@@ -76,7 +76,7 @@ client never retries a failed password and surfaces the wait time in the excepti
 Session handling: the router allows **one authenticated session at a time**: a new SRP login
 invalidates the previous `sessionID` (verified live). The client therefore logs in once and reuses
 the session for as long as it lasts (a session was still valid after 10+ minutes idle); logging in
-on every poll would log the user out of the web GUI every 30 s, and opening the GUI will in turn
+on every poll would log the user out of the web GUI on every poll, and opening the GUI will in turn
 log the integration out, which is handled by the re-login path below. A logged-in `sessionID`
 cookie keeps working until the router expires it or another login replaces it.
 Every page fetch checks for the login form (`id="srp_password"`) in the response; if found the
@@ -142,7 +142,7 @@ class VantivaData: gateway, wan, gpon, clients: dict[str, LanClient]
   "verify SSL"/scheme is not needed (router is HTTP only on the LAN; `https://` host prefix is
   honoured if given). `test-before-configure`: logs in and fetches system info; unique ID is the
   gateway MAC from system info (`unique-config-entry`). Reauth flow on `VantivaAuthError`.
-  Options flow: scan interval (default 30 s, min 10 s) and `consider_home` seconds for trackers.
+  Options flow: scan interval (default 300 s, 60 s to 86400 s) and `consider_home` seconds for trackers.
 * **Coordinator**: one `DataUpdateCoordinator[VantivaData]`; a single `update` fetches the pages
   above concurrently through one aiohttp session, raises `ConfigEntryAuthFailed` on auth errors
   and `UpdateFailed` on transport errors. Page set is fixed after first successful probe.
