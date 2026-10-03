@@ -51,6 +51,7 @@ class VantivaDeviceTracker(CoordinatorEntity[VantivaCoordinator], ScannerEntity)
         """Initialise the tracker."""
         super().__init__(coordinator)
         self._mac = mac
+        self._attr_unique_id = mac
         self._attr_mac_address = mac
         self._client: LanClient | None = None
         self._update_from_data()
