@@ -32,6 +32,10 @@ from custom_components.vantiva.const import DOMAIN  # noqa: E402
 from homeassistant.const import CONF_HOST, CONF_PASSWORD, CONF_USERNAME  # noqa: E402
 from homeassistant.core import HomeAssistant  # noqa: E402
 from pytest_homeassistant_custom_component.common import MockConfigEntry  # noqa: E402
+from pytest_homeassistant_custom_component.syrupy import (  # noqa: E402
+    HomeAssistantSnapshotExtension,
+)
+from syrupy.assertion import SnapshotAssertion  # noqa: E402
 
 from .factories import GATEWAY_MAC, make_data, make_gateway  # noqa: E402
 
@@ -43,6 +47,12 @@ ENTRY_DATA = {CONF_HOST: HOST, CONF_USERNAME: "admin", CONF_PASSWORD: PASSWORD}
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations: None) -> None:
     """Enable loading the custom integration in every test."""
+
+
+@pytest.fixture
+def snapshot(snapshot: SnapshotAssertion) -> SnapshotAssertion:
+    """Pin the Home Assistant snapshot extension (plugin load order is not deterministic)."""
+    return snapshot.use_extension(HomeAssistantSnapshotExtension)
 
 
 @pytest.fixture
