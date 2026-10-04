@@ -29,8 +29,8 @@ All entities except the device trackers belong to one device representing the ga
 |---|---|
 | WAN IPv4 address | |
 | Last boot | Timestamp derived from uptime. Changes of less than 60 s are ignored. |
-| Connected clients | Clients the gateway currently reports as active |
-| Known clients | All clients in the gateway's device list, active or not |
+| Connected clients | Count of clients the gateway currently reports as active. The `clients` attribute holds the list (name, hostname, MAC, IP, connection type, port, link speed, lease type, vendor class, connected since). |
+| Known clients | Count of all clients in the gateway's device list, active or not, with the same `clients` attribute. |
 | WAN received / WAN sent | Byte counters, `total_increasing`, shown in GB by default |
 | CPU usage, Memory usage | Diagnostic |
 | Firmware version, Hardware version | Diagnostic |

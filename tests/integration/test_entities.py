@@ -57,7 +57,18 @@ async def test_gateway_device(hass: HomeAssistant, init_integration: MockConfigE
 async def test_sensors(hass: HomeAssistant, init_integration: MockConfigEntry) -> None:
     assert hass.states.get("sensor.nh20t_wan_ipv4_address").state == "203.0.113.58"
     assert hass.states.get("sensor.nh20t_connected_clients").state == "1"
-    assert hass.states.get("sensor.nh20t_known_clients").state == "2"
+    known = hass.states.get("sensor.nh20t_known_clients")
+    assert known.state == "2"
+    assert len(known.attributes["clients"]) == 2
+    connected = hass.states.get("sensor.nh20t_connected_clients")
+    assert [c["mac"] for c in connected.attributes["clients"]] == [CLIENT_ACTIVE_MAC]
+    client = connected.attributes["clients"][0]
+    assert client["hostname"] == "device-01"
+    assert client["ip"] == "192.168.1.117"
+    assert client["active"] is True
+    assert client["connection"] == "wired"
+    assert client["port"] == "5"
+    assert client["speed_mbps"] == 2500
     assert hass.states.get("sensor.nh20t_cpu_usage").state == "2"
     assert hass.states.get("sensor.nh20t_dns_servers").state == "198.51.100.67, 198.51.100.116"
     assert float(hass.states.get("sensor.nh20t_gpon_receive_power").state) == -17.544872
