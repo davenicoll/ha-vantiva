@@ -3,7 +3,7 @@ PHASE: COMPLETE
 # STATUS
 
 Project: ha-vantiva — Home Assistant custom integration (domain `vantiva`) for Vantiva/Technicolor Homeware gateways.
-Repo: https://github.com/davenicoll/ha-vantiva (private). Release: https://github.com/davenicoll/ha-vantiva/releases/tag/v0.1.0 (with `vantiva.zip`).
+Repo: https://github.com/davenicoll/ha-vantiva (public since 2026-10-03). Release: https://github.com/davenicoll/ha-vantiva/releases/tag/v0.1.0 (with `vantiva.zip`).
 
 ## Done
 - Phase 1 research (docs/RESEARCH.md): router identified live as Vantiva/Technicolor NH20T (Telus GPON fibre hub, Homeware 20.3.i.0565, no Wi-Fi); SRP-6a login reverse-engineered and reproduced; all data pages captured; scrubbed fixtures. Root cause of the upstream `shaiu/technicolor` failure found by live reproduction: its SRP works, but the published `pytechnicolor` needs `lxml` without declaring it (crash → "Error setting up entry"), its selectors target Homeware 17/18, presence is inferred from "has IP", and the config flow never validates credentials. ADR-1: new integration rather than fork; upstream findings written up for an issue/PR.
@@ -16,11 +16,10 @@ Repo: https://github.com/davenicoll/ha-vantiva (private). Release: https://githu
 - Dave's pre-publication request: full-history gitleaks scan run locally (gitleaks 8.30, 30 commits, no leaks; only the untracked `.env` is flagged in a working-tree scan). Safe to make public from a secrets standpoint.
 
 ## CI on main
-- Test (ruff, mypy, pytest), Secrets check, hassfest: pass.
-- HACS action: brand/topics/description/license pass; the "hacs.json"/"manifest" checks fail only because HACS fetches files via raw.githubusercontent.com, which 404s on a private repo (documented in docs/PUBLISHING.md). They pass once the repo is public.
+- Test (ruff, mypy, pytest), hassfest and the HACS action (all 9 checks) pass. Secrets checks run locally only (pre-commit/pre-push hooks).
 
 ## Blockers / decisions for Dave
-- Make the repo public if you want HACS default-list submission (also needed for the two remaining HACS action checks). Until then install it as a HACS custom repository.
+- Repo is public; HACS default-list submission is now possible (checklist in docs/PUBLISHING.md). Until accepted, install as a HACS custom repository.
 - Reboot button not implemented: the NH20T GUI exposes no reboot action (ADR-6).
 - Upstream issue for shaiu/technicolor not filed (needs Dave's account); text is ready in docs/RESEARCH.md §4.4.
 

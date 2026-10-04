@@ -685,4 +685,4 @@ Before submitting to HACS default or making your first release:
 
 ## Note: HACS action on a private repository
 
-The HACS action reads `hacs.json` and `manifest.json` through `raw.githubusercontent.com`, which returns 404 for private repositories. On this private repo the action therefore reports "invalid hacs.json" and "manifest ... Got None" even though both files are valid (hassfest passes). These two checks will pass once the repository is public; the brand check is independent and passes with the bundled `brand/` directory.
+The HACS action reads `hacs.json` and `manifest.json` through `raw.githubusercontent.com`, which returns 404 for private repositories, so while this repo was private it reported "invalid hacs.json" and "manifest ... Got None" even though both files were valid. After the repo was made public on 2026-10-03 all 9 HACS checks passed.
