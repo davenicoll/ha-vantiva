@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -25,7 +26,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .api import GponStats
+from .api import GponStats, LanClient
 from .coordinator import VantivaConfigEntry, VantivaCoordinator
 from .entity import VantivaEntity
 
@@ -37,6 +38,40 @@ class VantivaSensorEntityDescription(SensorEntityDescription):
     """Describes a Vantiva sensor."""
 
     value_fn: Callable[[VantivaCoordinator], StateType | datetime]
+    attributes_fn: Callable[[VantivaCoordinator], dict[str, Any]] | None = None
+
+
+def _client_dict(client: LanClient) -> dict[str, Any]:
+    """Serialise a LAN client for the `clients` attribute."""
+    return {
+        "name": client.friendly_name or client.hostname or client.mac,
+        "hostname": client.hostname,
+        "mac": client.mac,
+        "ip": client.ip,
+        "ipv6": client.ipv6,
+        "active": client.active,
+        "connection": str(client.connection),
+        "interface": client.interface,
+        "port": client.port,
+        "speed_mbps": client.speed_mbps,
+        "ssid": client.ssid,
+        "lease_type": client.lease_type,
+        "vendor_class": client.vendor_class,
+        "connected_since": (client.connected_since.isoformat() if client.connected_since else None),
+    }
+
+
+def _clients_attr(active_only: bool) -> Callable[[VantivaCoordinator], dict[str, Any]]:
+    def _attrs(coordinator: VantivaCoordinator) -> dict[str, Any]:
+        clients = [
+            _client_dict(c)
+            for c in coordinator.data.clients.values()
+            if c.active or not active_only
+        ]
+        clients.sort(key=lambda c: (c["name"] or "").lower())
+        return {"clients": clients}
+
+    return _attrs
 
 
 def _gpon(attr: str) -> Callable[[VantivaCoordinator], StateType]:
@@ -77,12 +112,14 @@ SENSORS: tuple[VantivaSensorEntityDescription, ...] = (
         translation_key="connected_clients",
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda c: c.data.active_client_count,
+        attributes_fn=_clients_attr(active_only=True),
     ),
     VantivaSensorEntityDescription(
         key="total_clients",
         translation_key="total_clients",
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda c: len(c.data.clients),
+        attributes_fn=_clients_attr(active_only=False),
     ),
     VantivaSensorEntityDescription(
         key="cpu_pct",
@@ -203,8 +240,17 @@ class VantivaSensor(VantivaEntity, SensorEntity):
     """A gateway sensor."""
 
     entity_description: VantivaSensorEntityDescription
+    # The client list is large and changes often; keep it out of the recorder database.
+    _unrecorded_attributes = frozenset({"clients"})
 
     @property
     def native_value(self) -> StateType | datetime:
         """Return the sensor value."""
         return self.entity_description.value_fn(self.coordinator)
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any] | None:
+        """Return the client list for the client-count sensors."""
+        if self.entity_description.attributes_fn is None:
+            return None
+        return self.entity_description.attributes_fn(self.coordinator)
