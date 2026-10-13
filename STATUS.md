@@ -18,6 +18,9 @@ Repo: https://github.com/davenicoll/ha-vantiva (public since 2026-10-03). Releas
 ## CI on main
 - Test (ruff, mypy, pytest), hassfest and the HACS action (all 9 checks) pass. Secrets checks run locally only (pre-commit/pre-push hooks).
 
+## Standing orders
+- PR size (Dave, 2026-10-12): every PR must aim for under 1000 changed lines; split larger work into stacked or sequential PRs. Exceed only when unavoidable, and then say so in the PR description and tell the captain. Pass this rule to every builder/teammate spawned.
+
 ## Blockers / decisions for Dave
 - Repo is public; HACS default-list submission is now possible (checklist in docs/PUBLISHING.md). Until accepted, install as a HACS custom repository.
 - Reboot button not implemented: the NH20T GUI exposes no reboot action (ADR-6).
