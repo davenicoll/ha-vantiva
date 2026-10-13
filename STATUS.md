@@ -19,7 +19,7 @@ Repo: https://github.com/davenicoll/ha-vantiva (public since 2026-10-03). Releas
 - Test (ruff, mypy, pytest), hassfest and the HACS action (all 9 checks) pass. Secrets checks run locally only (pre-commit/pre-push hooks).
 
 ## Standing orders
-- ACTIONS FREEZE (Dave via captain, 2026-10-13, until lifted): the davenicoll account is at 90% of included GitHub Actions minutes. No pushes, no PR open/update/merge, no workflow_dispatch or re-runs on any davenicoll/* repo. Local work only; commits stay on local branches. Critical pushes must be escalated to the captain. This note itself is committed locally and NOT pushed while the freeze is in effect.
+- CI guidance (Dave via captain, 2026-10-13; Actions freeze lifted): batch commits so each PR triggers CI once, no rapid repeated pushes; fix flaky CI instead of re-running (failures bill minutes). When the captain confirms a self-hosted runner label for this repo, open a small PR switching every workflow `runs-on` to `[self-hosted, linux, asura]`, adding a `concurrency` group with `cancel-in-progress: true`, and `paths` filters so docs-only changes skip CI. Do not push that PR before the label is confirmed. Caveat flagged to captain: this repo is PUBLIC; GitHub advises against self-hosted runners on public repos (fork PRs can run code on the runner), so the switch may need to stay on hosted runners or be limited to push events on main.
 - PR size (Dave, 2026-10-12): every PR must aim for under 1000 changed lines; split larger work into stacked or sequential PRs. Exceed only when unavoidable, and then say so in the PR description and tell the captain. Pass this rule to every builder/teammate spawned.
 
 ## Blockers / decisions for Dave
