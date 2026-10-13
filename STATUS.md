@@ -19,6 +19,7 @@ Repo: https://github.com/davenicoll/ha-vantiva (public since 2026-10-03). Releas
 - Test (ruff, mypy, pytest), hassfest and the HACS action (all 9 checks) pass. Secrets checks run locally only (pre-commit/pre-push hooks).
 
 ## Standing orders
+- ACTIONS FREEZE (Dave via captain, 2026-10-13, until lifted): the davenicoll account is at 90% of included GitHub Actions minutes. No pushes, no PR open/update/merge, no workflow_dispatch or re-runs on any davenicoll/* repo. Local work only; commits stay on local branches. Critical pushes must be escalated to the captain. This note itself is committed locally and NOT pushed while the freeze is in effect.
 - PR size (Dave, 2026-10-12): every PR must aim for under 1000 changed lines; split larger work into stacked or sequential PRs. Exceed only when unavoidable, and then say so in the PR description and tell the captain. Pass this rule to every builder/teammate spawned.
 
 ## Blockers / decisions for Dave
